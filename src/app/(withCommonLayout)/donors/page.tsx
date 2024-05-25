@@ -1,8 +1,8 @@
-import DashedLine from "@/components/UI/Doctor/DashedLine";
+// import DashedLine from "@/components/UI/Doctor/DashedLine";
 import DonorCard from "@/components/UI/Doctor/DonorCard";
-import DoctorCard from "@/components/UI/Doctor/DonorCard";
-import ScrollCategory from "@/components/UI/Doctor/ScrollCategory";
-import { Doctor } from "@/types/doctor";
+// import DoctorCard from "@/components/UI/Doctor/DonorCard";
+// import ScrollCategory from "@/components/UI/Doctor/ScrollCategory";
+// import { Doctor } from "@/types/doctor";
 import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 

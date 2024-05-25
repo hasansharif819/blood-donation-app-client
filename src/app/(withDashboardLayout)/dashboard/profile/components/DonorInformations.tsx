@@ -37,6 +37,12 @@ const DonorInformation = ({ data }: any) => {
           <Typography>{data?.bloodType}</Typography>
         </StyledInformationBox>
         <StyledInformationBox>
+          <Typography color="secondary" variant="caption">
+            Total Donation
+          </Typography>
+          <Typography>{data?.totalDonations}</Typography>
+        </StyledInformationBox>
+        <StyledInformationBox>
           <Typography variant="caption" color="secondary">
             Location
           </Typography>

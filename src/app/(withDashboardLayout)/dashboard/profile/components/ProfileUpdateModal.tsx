@@ -3,16 +3,17 @@
 import React, { useEffect, useState } from "react";
 
 import PHFullScreenModal from "@/components/Shared/PHModal/PHFullScreenModal";
-import { useGetDonorQuery, useUpdateDonorMutation } from "@/redux/api/donorApi";
+import { useGetDonorQuery } from "@/redux/api/donorApi";
 import PHForm from "@/components/Forms/PHForm";
 import { FieldValues } from "react-hook-form";
 import { Button, Grid } from "@mui/material";
 import PHInput from "@/components/Forms/PHInput";
 import PHSelectField from "@/components/Forms/PHSelectField";
 import { BloodGroups, Gender } from "@/types";
-import { useGetAllSpecialtiesQuery } from "@/redux/api/specialtiesApi";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import PHDatePicker from "@/components/Forms/PHDatePicker";
+import { useUpdateMYProfileMutation } from "@/redux/api/myProfile";
 
 type TProps = {
   open: boolean;
@@ -25,6 +26,10 @@ const validationSchema = z.object({
     (x) => (x ? x : undefined),
     z.coerce.number().int().optional()
   ),
+  totalDonations: z.preprocess(
+    (x) => (x ? x : undefined),
+    z.coerce.number().int().optional()
+  ),
 
   name: z.string().optional(),
   email: z.string().optional(),
@@ -32,45 +37,65 @@ const validationSchema = z.object({
   city: z.string().optional(),
   bio: z.string().optional(),
   lastDonationDate: z.string().optional(),
+  bloodType: z.string().optional(),
+  contactNumber: z.string().optional(),
 });
 
 const ProfileUpdateModal = ({ open, setOpen, id }: TProps) => {
   const { data: userData, refetch, isSuccess } = useGetDonorQuery(id);
-  // const { data: allSpecialties } = useGetAllSpecialtiesQuery(undefined);
-  // const [selectedSpecialtiesIds, setSelectedSpecialtiesIds] = useState([]);
 
-  const [updateDonor, { isLoading: updating }] = useUpdateDonorMutation();
+  const defaultValues = {
+    id: userData?.id,
+    name: userData?.name,
+    email: userData?.email,
+    totalDonations: userData?.totalDonations,
+    location: userData?.location,
+    city: userData?.city,
+    bloodType: userData?.bloodType,
+    age: userData?.userProfile?.age,
+    bio: userData?.userProfile?.bio,
+    contactNumber: userData?.userProfile?.contactNumber,
+    lastDonationDate: userData?.userProfile?.lastDonationDate,
+  };
+
+  const [updateProfile, { isLoading: updating }] = useUpdateMYProfileMutation();
+
+  // console.log("updateProfile = ", updateProfile);
 
   const submitHandler = async (values: FieldValues) => {
-    console.log({ id });
+    // console.log({ id });
     // return;
 
-    const excludedFields: Array<keyof typeof values> = [
-      "email",
-      "id",
-      "role",
-      "needPasswordChange",
-      "status",
-      "createdAt",
-      "updatedAt",
-      "isDeleted",
-      "age",
-      "bio",
-      "profilePhoto",
-      "lastDonationDate",
-      "name",
-      "location",
-      "city",
-    ];
+    // const excludedFields: Array<keyof typeof values> = [
+    //   "email",
+    //   "id",
+    //   "status",
+    //   "createdAt",
+    //   "updatedAt",
+    //   "isDeleted",
+    //   "age",
+    //   "bio",
+    //   "totalDonations",
+    //   "profilePhoto",
+    //   "lastDonationDate",
+    //   "contactNumber",
+    //   "name",
+    //   "location",
+    //   "city",
+    // ];
 
-    const updatedValues = Object.fromEntries(
-      Object.entries(values).filter(([key]) => {
-        return !excludedFields.includes(key);
-      })
-    );
+    // const updatedValues = Object.fromEntries(
+    //   Object.entries(values).filter(([key]) => {
+    //     return !excludedFields.includes(key);
+    //   })
+    // );
+
+    // console.log("Update values = ", values);
 
     try {
-      updateDonor({ body: updatedValues, id });
+      // updateDonor({ body: updatedValues, id });
+      // updateProfile({ values });
+      const res = await updateProfile(values);
       await refetch();
       setOpen(false);
     } catch (error) {
@@ -82,7 +107,7 @@ const ProfileUpdateModal = ({ open, setOpen, id }: TProps) => {
     <PHFullScreenModal open={open} setOpen={setOpen} title="Update Profile">
       <PHForm
         onSubmit={submitHandler}
-        //   defaultValues={doctorData}
+        defaultValues={defaultValues}
         resolver={zodResolver(validationSchema)}
       >
         <Grid container spacing={2} sx={{ my: 5 }}>
@@ -109,6 +134,15 @@ const ProfileUpdateModal = ({ open, setOpen, id }: TProps) => {
           </Grid>
           <Grid item xs={12} sm={12} md={6}>
             <PHInput
+              name="totalDonations"
+              type="number"
+              label="Total Donations"
+              sx={{ mb: 2 }}
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12} sm={12} md={6}>
+            <PHInput
               name="location"
               label="Location"
               sx={{ mb: 2 }}
@@ -123,6 +157,14 @@ const ProfileUpdateModal = ({ open, setOpen, id }: TProps) => {
           </Grid>
           <Grid item xs={12} sm={12} md={6}>
             <PHInput
+              name="contactNumber"
+              label="Contact Number"
+              sx={{ mb: 2 }}
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12} sm={12} md={6}>
+            <PHInput
               name="age"
               type="number"
               label="Age"
@@ -131,10 +173,12 @@ const ProfileUpdateModal = ({ open, setOpen, id }: TProps) => {
             />
           </Grid>
 
-          <Grid item xs={12} sm={12} md={6}>
+          <Grid item md={6}>
+            {/* <PHDatePicker name="lastDonationDate" label="Last Donation Date" /> */}
             <PHInput
               name="lastDonationDate"
-              label="Last Donation Date"
+              type="text"
+              label="lastDonationDate"
               sx={{ mb: 2 }}
               fullWidth
             />

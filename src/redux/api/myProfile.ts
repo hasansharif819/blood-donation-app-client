@@ -13,12 +13,24 @@ export const profileAPi = baseApi.injectEndpoints({
       providesTags: [tagTypes.user],
     }),
     updateMYProfile: build.mutation({
-      query: (data) => {
+      query: (values) => {
         return {
-          url: "/my-profile",
+          url: "/update-my-profile",
           method: "PUT",
-          data,
-          contentType: "multipart/form-data",
+          data: values,
+          // contentType: "multipart/form-data",
+        };
+      },
+      invalidatesTags: [tagTypes.user],
+    }),
+
+    updateProfilePicture: build.mutation({
+      query: (values) => {
+        return {
+          url: "/update-profile-picture",
+          method: "POST",
+          data: values,
+          // contentType: "multipart/form-data",
         };
       },
       invalidatesTags: [tagTypes.user],
@@ -26,4 +38,8 @@ export const profileAPi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetMYProfileQuery, useUpdateMYProfileMutation } = profileAPi;
+export const {
+  useGetMYProfileQuery,
+  useUpdateMYProfileMutation,
+  useUpdateProfilePictureMutation,
+} = profileAPi;

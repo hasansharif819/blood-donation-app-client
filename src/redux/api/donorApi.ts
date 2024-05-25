@@ -46,17 +46,17 @@ export const donorApi = baseApi.injectEndpoints({
       providesTags: [tagTypes.user],
     }),
     // update a doctor
-    updateDonor: build.mutation({
-      query: (data) => {
-        // console.log(data);
-        return {
-          url: `/donor/${data.id}`,
-          method: "PATCH",
-          data: data.body,
-        };
-      },
-      invalidatesTags: [tagTypes.user],
-    }),
+    // updateDonor: build.mutation({
+    //   query: (data) => {
+    //     // console.log(data);
+    //     return {
+    //       url: `/donor/${data.id}`,
+    //       method: "PATCH",
+    //       data: data.body,
+    //     };
+    //   },
+    //   invalidatesTags: [tagTypes.user],
+    // }),
   }),
 });
 
@@ -65,5 +65,5 @@ export const {
   useGetAllDonorsQuery,
   useDeleteDonorMutation,
   useGetDonorQuery,
-  useUpdateDonorMutation,
+  // useUpdateDonorMutation,
 } = donorApi;

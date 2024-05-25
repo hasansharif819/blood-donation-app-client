@@ -55,12 +55,14 @@ const DonorsProfilePage = async ({ params }: PropTypes) => {
         <Box sx={{ my: 10, p: 3, bgcolor: "#f8f8f8" }}>
           <Stack sx={{ bgcolor: "white", p: 3 }}>
             <Stack direction="row" gap={10}>
-              <Box sx={{ width: 480, height: 480, bgcolor: "#808080" }}>
+              <Box sx={{ width: 400, height: 500, bgcolor: "#808080" }}>
                 <Image
-                  src={donor?.profilePhoto ? donor?.profilePhoto : placeholder}
+                  src={
+                    donor?.profilePicture ? donor?.profilePicture : placeholder
+                  }
                   alt="donor image"
-                  width={480}
-                  height={480}
+                  width={400}
+                  height={500}
                   style={{
                     height: "480px",
                   }}

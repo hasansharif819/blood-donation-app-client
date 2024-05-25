@@ -1,4 +1,4 @@
-import { Doctor } from "@/types/doctor";
+// import { Doctor } from "@/types/doctor";
 import {
   Box,
   Button,
@@ -13,6 +13,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const DonorCard = ({ donor }: any) => {
+  // console.log("donor = ", donor);
   const placeholder =
     "https://static.vecteezy.com/system/resources/thumbnails/026/489/224/small_2x/muslim-malay-woman-doctor-in-hospital-with-copy-space-ai-generated-photo.jpg";
 
@@ -22,7 +23,7 @@ const DonorCard = ({ donor }: any) => {
         component="img"
         alt="green iguana"
         height="140"
-        image={donor?.profilePhoto ? donor.profilePhoto : placeholder}
+        image={donor?.profilePicture ? donor.profilePicture : placeholder}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="p">
