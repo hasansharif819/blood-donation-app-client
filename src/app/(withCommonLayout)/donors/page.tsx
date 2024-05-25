@@ -1,24 +1,16 @@
 // import DashedLine from "@/components/UI/Doctor/DashedLine";
 import DonorCard from "@/components/UI/Doctor/DonorCard";
-// import DoctorCard from "@/components/UI/Doctor/DonorCard";
-// import ScrollCategory from "@/components/UI/Doctor/ScrollCategory";
-// import { Doctor } from "@/types/doctor";
 import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 
 const Donors = async () => {
-  //   let res;
-  //   res = await fetch(
-  //     `https://blood-donation-server-final-six.vercel.app/api/donor-list`
-  //   );
-
   const res = await fetch(
     `https://blood-donation-server-final-six.vercel.app/api/donor-list`
   );
 
   const { data } = await res.json();
 
-  //   console.log(data);
+  // console.log(data);
 
   return (
     <Container>

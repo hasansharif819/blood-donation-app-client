@@ -60,41 +60,8 @@ const ProfileUpdateModal = ({ open, setOpen, id }: TProps) => {
 
   const [updateProfile, { isLoading: updating }] = useUpdateMYProfileMutation();
 
-  // console.log("updateProfile = ", updateProfile);
-
   const submitHandler = async (values: FieldValues) => {
-    // console.log({ id });
-    // return;
-
-    // const excludedFields: Array<keyof typeof values> = [
-    //   "email",
-    //   "id",
-    //   "status",
-    //   "createdAt",
-    //   "updatedAt",
-    //   "isDeleted",
-    //   "age",
-    //   "bio",
-    //   "totalDonations",
-    //   "profilePhoto",
-    //   "lastDonationDate",
-    //   "contactNumber",
-    //   "name",
-    //   "location",
-    //   "city",
-    // ];
-
-    // const updatedValues = Object.fromEntries(
-    //   Object.entries(values).filter(([key]) => {
-    //     return !excludedFields.includes(key);
-    //   })
-    // );
-
-    // console.log("Update values = ", values);
-
     try {
-      // updateDonor({ body: updatedValues, id });
-      // updateProfile({ values });
       const res = await updateProfile(values);
       await refetch();
       setOpen(false);

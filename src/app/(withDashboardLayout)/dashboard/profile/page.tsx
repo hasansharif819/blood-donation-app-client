@@ -59,8 +59,6 @@ const Profile = () => {
     <p>Loading...</p>;
   }
 
-  // console.log("User data = ", data);
-
   return (
     <>
       <ProfileUpdateModal

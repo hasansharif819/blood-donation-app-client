@@ -1,7 +1,10 @@
+import Donors from "@/app/(withCommonLayout)/donors/page";
+
 const DashboardHomePage = () => {
   return (
     <div>
-      <h1>Welcome to dashboard</h1>
+      <h3 style={{ textAlign: "center", fontSize: "48px" }}>Donors</h3>
+      <Donors />
     </div>
   );
 };

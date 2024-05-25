@@ -5,10 +5,8 @@ import { DrawerItem, UserRole } from "@/types";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import GroupIcon from "@mui/icons-material/Group";
 import MedicalInformationIcon from "@mui/icons-material/MedicalInformation";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import PersonIcon from "@mui/icons-material/Person";
 import KeyIcon from "@mui/icons-material/Key";
-import BookOnlineIcon from "@mui/icons-material/BookOnline";
 
 export const drawerItems = (role: UserRole): DrawerItem[] => {
   const roleMenus: DrawerItem[] = [];
@@ -61,31 +59,13 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
         }
       );
       break;
-      roleMenus.push(
-        {
-          title: "Dashboard",
-          path: `${role}`,
-          icon: DashboardIcon,
-        },
-        {
-          title: "Schedules",
-          path: `${role}/schedules`,
-          icon: CalendarMonthIcon,
-        },
-        {
-          title: "Appointments",
-          path: `${role}/appointment`,
-          icon: BookOnlineIcon,
-        }
-      );
-      break;
 
     case USER_ROLE.USER:
-      roleMenus.push({
-        title: "Donors",
-        path: `donors`,
-        icon: MedicalInformationIcon,
-      });
+      // roleMenus.push({
+      //   title: "Donors",
+      //   path: `donors`,
+      //   icon: MedicalInformationIcon,
+      // });
       break;
 
     default:
