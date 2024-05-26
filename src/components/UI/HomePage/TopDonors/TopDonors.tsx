@@ -1,5 +1,5 @@
-import DashedLine from "@/components/UI/Doctor/DashedLine";
-import DonorCard from "@/components/UI/Doctor/DonorCard";
+import DashedLine from "@/components/UI/Donor/DashedLine";
+import DonorCard from "@/components/UI/Donor/DonorCard";
 import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 
 const TopDonors = async () => {

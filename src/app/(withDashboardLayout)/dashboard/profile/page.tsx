@@ -19,6 +19,7 @@ const Profile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data, isLoading } = useGetMYProfileQuery(undefined);
+
   const [updateProfilePicture, { isLoading: updating }] =
     useUpdateProfilePictureMutation();
 
@@ -55,9 +56,12 @@ const Profile = () => {
         }
       });
   };
+
   if (isLoading) {
     <p>Loading...</p>;
   }
+
+  const placeholder = "https://i.ibb.co/C9R8GrS/IMG-20200803-183036.jpg";
 
   return (
     <>
@@ -80,8 +84,7 @@ const Profile = () => {
               <Image
                 height={500}
                 width={400}
-                layout="responsive"
-                src={data?.profilePicture}
+                src={data?.profilePicture ? data?.profilePicture : placeholder}
                 alt="User Photo"
               />
             </Box>
@@ -109,6 +112,7 @@ const Profile = () => {
           </Grid>
           <Grid xs={12} md={8}>
             <DonorInformation data={data} />
+            {/* <DonorInformation /> */}
           </Grid>
         </Grid>
       </Container>

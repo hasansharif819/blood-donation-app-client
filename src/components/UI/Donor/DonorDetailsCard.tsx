@@ -1,4 +1,5 @@
-// import DonorDetailsCard from "@/components/UI/Donor/DonorDetailsCard";
+"use client";
+
 import {
   Box,
   Button,
@@ -11,41 +12,10 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 
-type PropTypes = {
-  params: {
-    id: string;
-  };
-};
-
-const InfoBoxStyles = {
-  background:
-    "linear-gradient(to bottom, rgba(21,134,253,0.3), rgba(255,255,255,1) 100%)",
-  width: "100%",
-  p: 3,
-  "& h6": {
-    color: "primary.main",
-  },
-  "& p": {
-    color: "secondary.main",
-  },
-};
-
-const DonorsProfilePage = async ({ params }: PropTypes) => {
-  //   console.log("params = ", params);
-  const res = await fetch(
-    `https://blood-donation-server-final-six.vercel.app/api/donor-list/${params.id}`
-  );
-  const { data: donor } = await res.json();
-
-  //   console.log(donor);
-  const handleRequestBlood = (id: string) => {
-    console.log("Request for bllod id = ", id);
-  };
-
+const DonorDetailsCard = ({ donor }: any) => {
   const placeholder = "https://i.ibb.co/C9R8GrS/IMG-20200803-183036.jpg";
 
   return (
-    // <DonorDetailsCard />
     <Container>
       <Box my={5}>
         <Typography variant="h4" fontWeight={700} textAlign="center">
@@ -119,7 +89,7 @@ const DonorsProfilePage = async ({ params }: PropTypes) => {
                   <Button
                     size="small"
                     component={Link}
-                    href={`/donors/${donor.id}/blood-request`}
+                    href={`/donors/${donor?.id}/blood-request`}
                   >
                     Request for Blood
                   </Button>
@@ -133,4 +103,4 @@ const DonorsProfilePage = async ({ params }: PropTypes) => {
   );
 };
 
-export default DonorsProfilePage;
+export default DonorDetailsCard;

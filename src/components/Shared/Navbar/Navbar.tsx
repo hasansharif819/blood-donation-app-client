@@ -61,7 +61,10 @@ const Navbar = () => {
           </Stack>
 
           {userInfo?.userId ? (
-            (
+            <Stack sx={{ flexDirection: "row", gap: 2 }}>
+              <Button component={Link} href="/dashboard/profile">
+                My Profile
+              </Button>
               <Button
                 color="error"
                 onClick={handleLogOut}
@@ -69,11 +72,7 @@ const Navbar = () => {
               >
                 Logout
               </Button>
-            ) && (
-              <Button component={Link} href="/profile">
-                My Profile
-              </Button>
-            )
+            </Stack>
           ) : (
             <Button component={Link} href="/login">
               Login

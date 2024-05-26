@@ -10,7 +10,8 @@ const StyledInformationBox = styled(Box)(({ theme }) => ({
   },
 }));
 
-const DonorInformation = ({ data }: any) => {
+const DonorInformation = ({data}: any) => {
+  
   return (
     <>
       <Typography variant="h5" color="primary.main" mb={2}>
