@@ -11,9 +11,10 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
+import avatar from "@/assets/images/avatar.png";
 
 const DonorDetailsCard = ({ donor }: any) => {
-  const placeholder = "https://i.ibb.co/C9R8GrS/IMG-20200803-183036.jpg";
+  // const placeholder = "https://i.ibb.co/C9R8GrS/IMG-20200803-183036.jpg";
 
   return (
     <Container>
@@ -37,18 +38,18 @@ const DonorDetailsCard = ({ donor }: any) => {
       <Box>
         <Box sx={{ my: 10, p: 3, bgcolor: "#f8f8f8" }}>
           <Stack sx={{ bgcolor: "white", p: 3 }}>
-            <Stack direction="row" gap={10}>
-              <Box sx={{ width: 400, height: 500, bgcolor: "#808080" }}>
+            <Stack
+              direction="row"
+              gap={10}
+              alignItems={"center"}
+              justifyContent={"center"}
+            >
+              <Box sx={{ width: 400 }}>
                 <Image
-                  src={
-                    donor?.profilePicture ? donor?.profilePicture : placeholder
-                  }
+                  src={donor?.profilePicture ? donor?.profilePicture : avatar}
                   alt="donor image"
                   width={400}
                   height={500}
-                  style={{
-                    height: "480px",
-                  }}
                 />
               </Box>
               <Stack flex={1}>

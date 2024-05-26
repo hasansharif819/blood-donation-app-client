@@ -14,6 +14,7 @@ import ProfileUpdateModal from "./components/ProfileUpdateModal";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DonorInformation from "./components/DonorInformations";
 import { toast } from "sonner";
+import avatar from "@/assets/images/avatar.png";
 
 const Profile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -61,7 +62,7 @@ const Profile = () => {
     <p>Loading...</p>;
   }
 
-  const placeholder = "https://i.ibb.co/C9R8GrS/IMG-20200803-183036.jpg";
+  // const placeholder = "https://i.ibb.co/C9R8GrS/IMG-20200803-183036.jpg";
 
   return (
     <>
@@ -75,17 +76,23 @@ const Profile = () => {
           <Grid xs={12} md={4}>
             <Box
               sx={{
-                height: 500,
+                height: "100%",
+                maxHeight: 500,
                 width: "100%",
                 overflow: "hidden",
                 borderRadius: 1,
               }}
             >
               <Image
-                height={500}
-                width={400}
-                src={data?.profilePicture ? data?.profilePicture : placeholder}
+                height={0}
+                width={0}
+                src={data?.profilePicture ? data?.profilePicture : avatar}
                 alt="User Photo"
+                style={{
+                  objectFit: "cover",
+                  height: "100%",
+                  width: "100%",
+                }}
               />
             </Box>
             <Box my={3}>

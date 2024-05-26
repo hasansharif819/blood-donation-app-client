@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
+import avatar from "@/assets/images/avatar.png";
 
 type PropTypes = {
   params: {
@@ -42,7 +43,7 @@ const DonorsProfilePage = async ({ params }: PropTypes) => {
     console.log("Request for bllod id = ", id);
   };
 
-  const placeholder = "https://i.ibb.co/C9R8GrS/IMG-20200803-183036.jpg";
+  // const placeholder = "https://i.ibb.co/C9R8GrS/IMG-20200803-183036.jpg";
 
   return (
     // <DonorDetailsCard />
@@ -70,9 +71,7 @@ const DonorsProfilePage = async ({ params }: PropTypes) => {
             <Stack direction="row" gap={10}>
               <Box sx={{ width: 400, height: 500, bgcolor: "#808080" }}>
                 <Image
-                  src={
-                    donor?.profilePicture ? donor?.profilePicture : placeholder
-                  }
+                  src={donor?.profilePicture ? donor?.profilePicture : avatar}
                   alt="donor image"
                   width={400}
                   height={500}

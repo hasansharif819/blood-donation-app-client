@@ -9,23 +9,35 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import Image from "next/image";
 import Link from "next/link";
 
 const DonorCard = ({ donor }: any) => {
   // console.log("donor = ", donor);
-  const placeholder =
-    "https://static.vecteezy.com/system/resources/thumbnails/026/489/224/small_2x/muslim-malay-woman-doctor-in-hospital-with-copy-space-ai-generated-photo.jpg";
+  const avatar = "https://i.ibb.co/Xy3r8MX/avatar.png";
 
   return (
-    <Card sx={{ maxWidth: 345, maxHeight: 480 }}>
+    <Card sx={{ maxWidth: 345, maxHeight: 580 }}>
       <CardMedia
         component="img"
-        alt="green iguana"
+        alt="Donor Image"
         height="140"
-        image={donor?.profilePicture ? donor.profilePicture : placeholder}
-        style={{ objectFit: "cover", height: 240 }}
+        image={donor?.profilePicture ? donor.profilePicture : avatar}
+        style={{ objectFit: "cover", height: 300 }}
       />
+      {/* <Box> */}
+      {/* <Image
+        src={donor?.profilePicture ? donor?.profilePicture : avatar}
+        alt="donor image"
+        width={0}
+        height={0}
+        style={{
+          height: "240px",
+          width: "100%",
+          aspectRatio: "16/9",
+          objectFit: "cover",
+        }}
+      /> */}
+      {/* </Box> */}
       <CardContent>
         <Typography gutterBottom variant="h5" component="p">
           Name: {donor?.name}
