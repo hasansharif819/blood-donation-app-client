@@ -15,6 +15,8 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DonorInformation from "./components/DonorInformations";
 import { toast } from "sonner";
 import avatar from "@/assets/images/avatar.png";
+import MyDonationRequests from "./components/MyDonationRequests";
+import DashedLine from "@/components/UI/Donor/DashedLine";
 
 const Profile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -72,7 +74,7 @@ const Profile = () => {
         id={data?.id}
       />
       <Container sx={{ mt: 4 }}>
-        <Grid container spacing={4}>
+        <Grid container spacing={4} sx={{ mb: 15 }}>
           <Grid xs={12} md={4}>
             <Box
               sx={{
@@ -121,6 +123,10 @@ const Profile = () => {
             <DonorInformation data={data} />
             {/* <DonorInformation /> */}
           </Grid>
+        </Grid>
+        <DashedLine />
+        <Grid xs={12} md={8}>
+          <MyDonationRequests />
         </Grid>
       </Container>
     </>

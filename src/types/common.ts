@@ -46,3 +46,5 @@ export const BloodGroups = [
   "O_POSITIVE",
   "O_NEGATIVE",
 ];
+
+export const RequestStatus = ["APPROVED", "REJECTED"];

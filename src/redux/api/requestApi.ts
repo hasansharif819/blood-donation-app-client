@@ -13,7 +13,17 @@ export const requestAPi = baseApi.injectEndpoints({
       },
       invalidatesTags: [tagTypes.user],
     }),
+    updateRequestStatus: build.mutation({
+      query: (values) => {
+        return {
+          url: `/donation-request/${values.id}`,
+          method: "PUT",
+          data: values,
+        };
+      },
+      invalidatesTags: [tagTypes.user, tagTypes.request],
+    }),
   }),
 });
 
-export const { useRequestForBloodMutation } = requestAPi;
+export const { useRequestForBloodMutation, useUpdateRequestStatusMutation } = requestAPi;

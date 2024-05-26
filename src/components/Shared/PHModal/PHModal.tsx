@@ -39,11 +39,26 @@ export default function PHModal({
 
   return (
     <React.Fragment>
-      <BootstrapDialog
+      {/* <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
         sx={{ ...sx }}
+      > */}
+      <BootstrapDialog
+        onClose={handleClose}
+        aria-labelledby="customized-dialog-title"
+        open={open}
+        maxWidth="md" // Set the maximum width of the modal
+        fullWidth // Ensure the modal takes the full width of the maxWidth
+        sx={{
+          "& .MuiDialog-paper": {
+            minWidth: "500px", // Set a minimum width for the modal
+            maxWidth: "800px", // Set a maximum width for the modal
+            height: "auto", // Adjust the height as needed
+          },
+          ...sx,
+        }}
       >
         <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
           {title}

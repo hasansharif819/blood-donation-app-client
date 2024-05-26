@@ -24,20 +24,6 @@ const DonorCard = ({ donor }: any) => {
         image={donor?.profilePicture ? donor.profilePicture : avatar}
         style={{ objectFit: "cover", height: 300 }}
       />
-      {/* <Box> */}
-      {/* <Image
-        src={donor?.profilePicture ? donor?.profilePicture : avatar}
-        alt="donor image"
-        width={0}
-        height={0}
-        style={{
-          height: "240px",
-          width: "100%",
-          aspectRatio: "16/9",
-          objectFit: "cover",
-        }}
-      /> */}
-      {/* </Box> */}
       <CardContent>
         <Typography gutterBottom variant="h5" component="p">
           Name: {donor?.name}
