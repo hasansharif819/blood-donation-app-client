@@ -86,15 +86,10 @@ const Profile = () => {
               }}
             >
               <Image
-                height={0}
-                width={0}
+                height={450}
+                width={400}
                 src={data?.profilePicture ? data?.profilePicture : avatar}
                 alt="User Photo"
-                style={{
-                  objectFit: "cover",
-                  height: "100%",
-                  width: "100%",
-                }}
               />
             </Box>
             <Box my={3}>

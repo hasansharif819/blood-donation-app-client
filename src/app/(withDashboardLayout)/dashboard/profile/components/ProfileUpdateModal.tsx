@@ -14,6 +14,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import PHDatePicker from "@/components/Forms/PHDatePicker";
 import { useUpdateMYProfileMutation } from "@/redux/api/myProfile";
+import { toast } from "sonner";
 
 type TProps = {
   open: boolean;
@@ -66,6 +67,7 @@ const ProfileUpdateModal = ({ open, setOpen, id }: TProps) => {
       await refetch();
       setOpen(false);
     } catch (error) {
+      toast.error("Something went wrong!!! Please try again later");
       console.log(error);
     }
   };

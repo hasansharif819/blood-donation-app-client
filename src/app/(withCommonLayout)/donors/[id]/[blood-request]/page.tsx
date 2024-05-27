@@ -13,6 +13,8 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import bloodImage from "@/assets/images/blood1.png";
+import PHSelectField from "@/components/Forms/PHSelectField";
+import { BloodGroups } from "@/types";
 
 type PropTypes = {
   params: {
@@ -21,11 +23,15 @@ type PropTypes = {
 };
 
 const validationSchema = z.object({
-  phoneNumber: z.string(),
-  dateOfDonation: z.string(),
-  hospitalName: z.string(),
-  hospitalAddress: z.string(),
-  reason: z.string(),
+  bloodType: z.string({
+    required_error:
+      "Requested Blood group is not matched with donor blood group",
+  }),
+  phoneNumber: z.string({ required_error: "Phone number is required" }),
+  dateOfDonation: z.string({ required_error: "Date of donation is required" }),
+  hospitalName: z.string({ required_error: "Hospital name is required" }),
+  hospitalAddress: z.string({ required_error: "Hospital address is required" }),
+  reason: z.string({ required_error: "Reason is required" }),
 });
 
 const RequestforBlood = ({ params }: PropTypes) => {
@@ -106,6 +112,15 @@ const RequestforBlood = ({ params }: PropTypes) => {
               spacing={2}
               sx={{ my: 3, width: "100%", maxWidth: 400 }}
             >
+              <Grid item xs={12} sm={12} md={12}>
+                <PHSelectField
+                  items={BloodGroups}
+                  name="bloodType"
+                  label="Blood Group"
+                  sx={{ mb: 2 }}
+                  fullWidth
+                />
+              </Grid>
               <Grid item xs={12} sm={12} md={12}>
                 <PHInput
                   name="phoneNumber"

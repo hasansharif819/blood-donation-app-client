@@ -10,8 +10,7 @@ const StyledInformationBox = styled(Box)(({ theme }) => ({
   },
 }));
 
-const DonorInformation = ({data}: any) => {
-  
+const DonorInformation = ({ data }: any) => {
   return (
     <>
       <Typography variant="h5" color="primary.main" mb={2}>
@@ -100,6 +99,14 @@ const DonorInformation = ({data}: any) => {
             Current Status
           </Typography>
           <Typography>{data?.status || "Active"}</Typography>
+        </StyledInformationBox>
+        <StyledInformationBox>
+          <Typography variant="caption" color="secondary">
+            Contact Number
+          </Typography>
+          <Typography>
+            {data?.userProfile?.contactNumber || "Not set"}
+          </Typography>
         </StyledInformationBox>
       </Stack>
     </>
