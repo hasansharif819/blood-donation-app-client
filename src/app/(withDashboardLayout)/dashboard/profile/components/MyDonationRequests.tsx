@@ -16,7 +16,7 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 
 const MyDonationRequests = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedId, setSelectedId] = useState(null);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
   const { data, isLoading } = useGetMyDonationRequestsMadeByUserQuery({});
 
   if (isLoading) {
@@ -24,18 +24,18 @@ const MyDonationRequests = () => {
   }
 
   const handleOpenModal = (id: string) => {
-    // console.log("Iddddddddddd = ", id);
     setSelectedId(id);
     setIsModalOpen(true);
   };
-  //   console.log("Donation requests =", data);
   return (
     <>
-      <UpdateRequestStatusModal
-        open={isModalOpen}
-        setOpen={setIsModalOpen}
-        id={data?.id}
-      />
+      {isModalOpen && selectedId && (
+        <UpdateRequestStatusModal
+          open={isModalOpen}
+          setOpen={setIsModalOpen}
+          id={selectedId}
+        />
+      )}
       <Container>
         <Typography variant="h3" sx={{ mt: 5, mb: 3, textAlign: "center" }}>
           My Donation Requests
@@ -76,14 +76,6 @@ const MyDonationRequests = () => {
                     >
                       Request Update
                     </Button>
-
-                    {isModalOpen && (
-                      <UpdateRequestStatusModal
-                        open={isModalOpen}
-                        setOpen={setIsModalOpen}
-                        id={selectedId}
-                      />
-                    )}
                   </div>
                 </CardActions>
               </Card>
