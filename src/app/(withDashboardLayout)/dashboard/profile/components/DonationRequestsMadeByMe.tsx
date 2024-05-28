@@ -1,6 +1,6 @@
 "use client";
 
-import { useGetMyDonationRequestsMadeByUserQuery } from "@/redux/api/myProfile";
+import { useDonationRequestsMadeByMeQuery } from "@/redux/api/myProfile";
 import {
   Button,
   Card,
@@ -10,14 +10,19 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import UpdateRequestStatusModal from "./UpdateRequestStatus";
 import { useState } from "react";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { miniSerializeError } from "@reduxjs/toolkit";
+import { toast } from "sonner";
+import UpdateRequestMadeByMeModal from "./updateRequestMadeByMeModal";
+import { useDeleteMyRequestMutation } from "@/redux/api/requestApi";
 
-const MyDonationRequests = () => {
+const DonationRequestsMadeByMe = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const { data, isLoading } = useGetMyDonationRequestsMadeByUserQuery({});
+  const { data, isLoading } = useDonationRequestsMadeByMeQuery({});
+  const [deleteMyRequest] = useDeleteMyRequestMutation();
 
   if (isLoading) {
     <p>Loading...</p>;
@@ -27,10 +32,25 @@ const MyDonationRequests = () => {
     setSelectedId(id);
     setIsModalOpen(true);
   };
+
+  const handleDelete = async (id: string) => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this request?"
+    );
+    if (!confirmed) return;
+    try {
+      const result = await deleteMyRequest(id);
+      if (result) {
+        toast.success("Request deleted successfully");
+      }
+    } catch (error) {
+      toast.error("Failed to delete request");
+    }
+  };
   return (
     <>
       {isModalOpen && selectedId && (
-        <UpdateRequestStatusModal
+        <UpdateRequestMadeByMeModal data={data}
           open={isModalOpen}
           setOpen={setIsModalOpen}
           id={selectedId}
@@ -38,7 +58,7 @@ const MyDonationRequests = () => {
       )}
       <Container>
         <Typography variant="h3" sx={{ mt: 5, mb: 3, textAlign: "center" }}>
-          My Donation Requests
+          Donation Requests Made By Me
         </Typography>
         <Grid container spacing={3}>
           {data?.map((item: any) => (
@@ -52,7 +72,7 @@ const MyDonationRequests = () => {
               >
                 <CardContent>
                   <Typography gutterBottom component="h5">
-                    Requester Name: {item?.requester?.name}
+                    Donor Name: {item?.donor?.name}
                   </Typography>
                   <Typography gutterBottom component="h5">
                     Blood Group: {item?.bloodType}
@@ -77,16 +97,21 @@ const MyDonationRequests = () => {
                   sx={{
                     position: "absolute",
                     bottom: 0,
-                    left: "50%",
-                    transform: "translateX(-50%)",
                   }}
                 >
                   <Button
-                    size="small"
+                    fullWidth
                     endIcon={<ModeEditIcon />}
                     onClick={() => handleOpenModal(item?.id)}
                   >
                     Update
+                  </Button>
+                  <Button
+                    color="error"
+                    onClick={() => handleDelete(item?.id)}
+                    endIcon={<DeleteForeverIcon />}
+                  >
+                    Delete
                   </Button>
                 </CardActions>
               </Card>
@@ -98,4 +123,4 @@ const MyDonationRequests = () => {
   );
 };
 
-export default MyDonationRequests;
+export default DonationRequestsMadeByMe;

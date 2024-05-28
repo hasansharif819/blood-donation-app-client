@@ -17,6 +17,7 @@ import { toast } from "sonner";
 import avatar from "@/assets/images/avatar.png";
 import MyDonationRequests from "./components/MyDonationRequests";
 import DashedLine from "@/components/UI/Donor/DashedLine";
+import DonationRequestsMadeByMe from "./components/DonationRequestsMadeByMe";
 
 const Profile = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -122,6 +123,10 @@ const Profile = () => {
         <DashedLine />
         <Grid xs={12} md={8}>
           <MyDonationRequests />
+        </Grid>
+        <DashedLine />
+        <Grid xs={12} md={8}>
+          <DonationRequestsMadeByMe />
         </Grid>
       </Container>
     </>
