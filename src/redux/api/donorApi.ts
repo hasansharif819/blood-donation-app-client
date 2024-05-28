@@ -5,15 +5,15 @@ import { IDonor } from "@/types/doctor";
 
 export const donorApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    // createDonor: build.mutation({
-    //    query: (data) => ({
-    //       url: '/register',
-    //       method: 'POST',
-    //       contentType: 'multipart/form-data',
-    //       data,
-    //    }),
-    //    invalidatesTags: [tagTypes.user],
-    // }),
+    createDonor: build.mutation({
+      query: (data) => ({
+        url: "/register",
+        method: "POST",
+        // contentType: 'multipart/form-data',
+        data,
+      }),
+      invalidatesTags: [tagTypes.user],
+    }),
 
     getAllDonors: build.query({
       query: (arg: Record<string, any>) => ({
@@ -45,25 +45,25 @@ export const donorApi = baseApi.injectEndpoints({
       }),
       providesTags: [tagTypes.user],
     }),
-    // update a doctor
-    // updateDonor: build.mutation({
-    //   query: (data) => {
-    //     // console.log(data);
-    //     return {
-    //       url: `/donor/${data.id}`,
-    //       method: "PATCH",
-    //       data: data.body,
-    //     };
-    //   },
-    //   invalidatesTags: [tagTypes.user],
-    // }),
+    // update a donor
+    updateDonor: build.mutation({
+      query: (data) => {
+        // console.log(data);
+        return {
+          url: `/donor/${data.id}`,
+          method: "PATCH",
+          data,
+        };
+      },
+      invalidatesTags: [tagTypes.user],
+    }),
   }),
 });
 
 export const {
-  // useCreateDonorMutation,
+  useCreateDonorMutation,
   useGetAllDonorsQuery,
   useDeleteDonorMutation,
   useGetDonorQuery,
-  // useUpdateDonorMutation,
+  useUpdateDonorMutation,
 } = donorApi;

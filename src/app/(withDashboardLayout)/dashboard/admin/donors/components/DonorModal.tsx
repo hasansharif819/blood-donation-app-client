@@ -1,13 +1,14 @@
 import { Button, Grid } from "@mui/material";
-import { Gender } from "@/types/common";
+import { Role } from "@/types/common";
 import { FieldValues } from "react-hook-form";
 import PHForm from "@/components/Forms/PHForm";
 import PHInput from "@/components/Forms/PHInput";
 import PHSelectField from "@/components/Forms/PHSelectField";
 import PHFullScreenModal from "@/components/Shared/PHModal/PHFullScreenModal";
-import { useCreateDoctorMutation } from "@/redux/api/donorApi";
+import { useCreateDonorMutation } from "@/redux/api/donorApi";
 import { modifyPayload } from "@/utils/modifyPayload";
 import { toast } from "sonner";
+import { BloodGroups } from "@/types";
 
 type TProps = {
   open: boolean;
@@ -15,57 +16,47 @@ type TProps = {
 };
 
 const DonorModal = ({ open, setOpen }: TProps) => {
-  const [createDoctor] = useCreateDoctorMutation();
+  const [createDonor] = useCreateDonorMutation();
   const handleFormSubmit = async (values: FieldValues) => {
-    // console.log(values);
-    values.doctor.experience = Number(values.doctor.experience);
-    values.doctor.apointmentFee = Number(values.doctor.apointmentFee);
-    const data = modifyPayload(values);
+    values.age = Number(values.age);
+    values.totalDonations = Number(values.totalDonations);
     try {
-      const res = await createDoctor(data).unwrap();
-      console.log(res);
+      const res = await createDonor(values).unwrap();
       if (res?.id) {
-        toast.success("Donor created successfully!!!");
+        toast.success("User created successfully!!!");
         setOpen(false);
       }
     } catch (err: any) {
+      toast.error("Failed to create user");
       console.error(err);
     }
   };
 
   const defaultValues = {
-    doctor: {
-      email: "",
-      name: "",
-      contactNumber: "",
-      address: "",
-      registrationNumber: "",
-      gender: "",
-      experience: 0,
-      apointmentFee: 0,
-      qualification: "",
-      currentWorkingPlace: "",
-      designation: "",
-      profilePhoto: "",
-    },
-    password: "",
+    name: "",
+    email: "",
+    password: "Admin123",
+    bloodType: "",
+    role: "ADMIN",
+    totalDonations: 0,
+    location: "",
+    city: "",
+    bio: "",
+    age: 20,
+    contactNumber: "",
+    lastDonationDate: "",
   };
 
   return (
-    <PHFullScreenModal open={open} setOpen={setOpen} title="Create New Doctor">
+    <PHFullScreenModal open={open} setOpen={setOpen} title="Create User">
       <PHForm onSubmit={handleFormSubmit} defaultValues={defaultValues}>
         <Grid container spacing={2} sx={{ my: 5 }}>
           <Grid item xs={12} sm={12} md={4}>
-            <PHInput
-              name="doctor.name"
-              label="Name"
-              fullWidth={true}
-              sx={{ mb: 2 }}
-            />
+            <PHInput name="name" label="Name" fullWidth={true} sx={{ mb: 2 }} />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
             <PHInput
-              name="doctor.email"
+              name="email"
               type="email"
               label="Email"
               fullWidth={true}
@@ -82,78 +73,69 @@ const DonorModal = ({ open, setOpen }: TProps) => {
               sx={{ mb: 2 }}
             />
           </Grid>
+          <Grid item xs={12} sm={12} md={4}>
+            <PHSelectField
+              items={BloodGroups}
+              name="bloodType"
+              label="Blood Group"
+              sx={{ mb: 2 }}
+              fullWidth
+            />
+          </Grid>
 
           <Grid item xs={12} sm={12} md={4}>
             <PHInput
-              name="doctor.contactNumber"
-              label="Contract Number"
+              name="contactNumber"
+              label="Contact Number"
               fullWidth={true}
               sx={{ mb: 2 }}
             />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
             <PHInput
-              name="doctor.address"
-              label="Address"
+              name="location"
+              label="Location"
               fullWidth={true}
               sx={{ mb: 2 }}
             />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
-            <PHInput
-              name="doctor.registrationNumber"
-              label="Registration Number"
-              fullWidth={true}
-              sx={{ mb: 2 }}
-            />
+            <PHInput name="city" label="City" fullWidth={true} sx={{ mb: 2 }} />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
             <PHInput
-              name="doctor.experience"
+              name="totalDonations"
               type="number"
-              label="Experience"
+              label="Total Number of Donations"
               fullWidth={true}
               sx={{ mb: 2 }}
             />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
             <PHSelectField
-              items={Gender}
-              name="doctor.gender"
-              label="Gender"
+              items={Role}
+              name="role"
+              label="Role"
               sx={{ mb: 2 }}
             />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
             <PHInput
-              name="doctor.apointmentFee"
+              name="age"
               type="number"
-              label="ApointmentFee"
+              label="Age"
               fullWidth={true}
               sx={{ mb: 2 }}
             />
           </Grid>
           <Grid item xs={12} sm={12} md={4}>
-            <PHInput
-              name="doctor.qualification"
-              label="Qualification"
-              fullWidth={true}
-              sx={{ mb: 2 }}
-            />
+            <PHInput name="bio" label="Bio" fullWidth={true} sx={{ mb: 2 }} />
           </Grid>
 
           <Grid item xs={12} sm={12} md={4}>
             <PHInput
-              name="doctor.currentWorkingPlace"
-              label="Current Working Place"
-              fullWidth={true}
-              sx={{ mb: 2 }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={12} md={4}>
-            <PHInput
-              name="doctor.designation"
-              label="Designation"
+              name="lastDonationDate"
+              label="Last Donation Date"
               fullWidth={true}
               sx={{ mb: 2 }}
             />

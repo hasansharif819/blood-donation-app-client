@@ -3,8 +3,8 @@ import { Box, Button, IconButton, Stack, TextField } from "@mui/material";
 import DoctorModal from "./components/DonorModal";
 import { useState } from "react";
 import {
-  useDeleteDoctorMutation,
-  useGetAllDoctorsQuery,
+  useDeleteDonorMutation,
+  useGetAllDonorsQuery,
 } from "@/redux/api/donorApi";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -28,21 +28,21 @@ const DonorsPage = () => {
     query["searchTerm"] = searchTerm;
   }
 
-  const { data, isLoading } = useGetAllDoctorsQuery({ ...query });
-  const [deleteDoctor] = useDeleteDoctorMutation();
+  const { data, isLoading } = useGetAllDonorsQuery({ ...query });
+  const [deleteDonor] = useDeleteDonorMutation();
 
   // console.log(data);
-  const doctors = data?.doctors;
+  const donors = data?.donors;
   const meta = data?.meta;
   // console.log(doctors);
 
   const handleDelete = async (id: string) => {
     // console.log(id);
     try {
-      const res = await deleteDoctor(id).unwrap();
+      const res = await deleteDonor(id).unwrap();
       // console.log(res);
       if (res?.id) {
-        toast.success("Doctor deleted successfully!!!");
+        toast.success("Donor deleted successfully!!!");
       }
     } catch (err: any) {
       console.error(err.message);
@@ -52,9 +52,10 @@ const DonorsPage = () => {
   const columns: GridColDef[] = [
     { field: "name", headerName: "Name", flex: 1 },
     { field: "email", headerName: "Email", flex: 1 },
-    { field: "contactNumber", headerName: "Contact Number", flex: 1 },
-    { field: "gender", headerName: "Gender", flex: 1 },
-    { field: "apointmentFee", headerName: "Appointment Fee", flex: 1 },
+    { field: "bloodType", headerName: "Blood Type", flex: 1 },
+    { field: "location", headerName: "Location", flex: 1 },
+    { field: "city", headerName: "City", flex: 1 },
+    { field: "totalDonations", headerName: "Total Donations", flex: 1 },
     {
       field: "action",
       headerName: "Action",
@@ -70,7 +71,7 @@ const DonorsPage = () => {
             >
               <DeleteIcon sx={{ color: "red" }} />
             </IconButton>
-            <Link href={`/dashboard/admin/doctors/edit/${row.id}`}>
+            <Link href={`/dashboard/admin/donors/edit/${row.id}`}>
               <IconButton aria-label="delete">
                 <EditIcon />
               </IconButton>
@@ -84,17 +85,17 @@ const DonorsPage = () => {
   return (
     <Box>
       <Stack direction="row" justifyContent="space-between" alignItems="center">
-        <Button onClick={() => setIsModalOpen(true)}>Create New Doctor</Button>
+        <Button onClick={() => setIsModalOpen(true)}>Create New User</Button>
         <DoctorModal open={isModalOpen} setOpen={setIsModalOpen} />
         <TextField
           onChange={(e) => setSearchTerm(e.target.value)}
           size="small"
-          placeholder="search doctors"
+          placeholder="search donors"
         />
       </Stack>
       {!isLoading ? (
         <Box my={2}>
-          <DataGrid rows={doctors} columns={columns} />
+          <DataGrid rows={donors} columns={columns} />
         </Box>
       ) : (
         <h1>Loading.....</h1>

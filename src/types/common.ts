@@ -35,6 +35,7 @@ export type IGenericErrorMessage = {
 };
 
 export const Gender = ["MALE", "FEMALE"];
+export const Role = ["ADMIN", "USER"];
 
 export const BloodGroups = [
   "A_POSITIVE",
