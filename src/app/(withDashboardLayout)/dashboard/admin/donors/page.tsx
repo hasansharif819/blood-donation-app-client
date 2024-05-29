@@ -1,6 +1,5 @@
 "use client";
 import { Box, Button, IconButton, Stack, TextField } from "@mui/material";
-import DoctorModal from "./components/DonorModal";
 import { useState } from "react";
 import {
   useDeleteDonorMutation,
@@ -12,12 +11,12 @@ import { useDebounced } from "@/redux/hooks";
 import { toast } from "sonner";
 import EditIcon from "@mui/icons-material/Edit";
 import Link from "next/link";
+import DonorModal from "./components/DonorModal";
 
 const DonorsPage = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const query: Record<string, any> = {};
   const [searchTerm, setSearchTerm] = useState<string>("");
-  // console.log(searchTerm);
 
   const debouncedTerm = useDebounced({
     searchQuery: searchTerm,
@@ -31,16 +30,12 @@ const DonorsPage = () => {
   const { data, isLoading } = useGetAllDonorsQuery({ ...query });
   const [deleteDonor] = useDeleteDonorMutation();
 
-  // console.log(data);
   const donors = data?.donors;
   const meta = data?.meta;
-  // console.log(doctors);
 
   const handleDelete = async (id: string) => {
-    // console.log(id);
     try {
       const res = await deleteDonor(id).unwrap();
-      // console.log(res);
       if (res?.id) {
         toast.success("Donor deleted successfully!!!");
       }
@@ -86,11 +81,11 @@ const DonorsPage = () => {
     <Box>
       <Stack direction="row" justifyContent="space-between" alignItems="center">
         <Button onClick={() => setIsModalOpen(true)}>Create New User</Button>
-        <DoctorModal open={isModalOpen} setOpen={setIsModalOpen} />
+        <DonorModal open={isModalOpen} setOpen={setIsModalOpen} />
         <TextField
           onChange={(e) => setSearchTerm(e.target.value)}
           size="small"
-          placeholder="search donors"
+          placeholder="Search Donors"
         />
       </Stack>
       {!isLoading ? (
