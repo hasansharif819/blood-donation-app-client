@@ -9,8 +9,6 @@ const HomePage = () => {
     <>
       <HeroSection />
       <TopDonors />
-      {/* <Specialist /> */}
-      {/* <TopRatedDoctors /> */}
       <WhyUs />
       <HowItWorks />
       <Stats />

@@ -20,7 +20,7 @@ const Stats = () => {
               fontWeight={500}
               color="white"
             >
-              180+
+              20000+
             </Typography>
             <Typography
               variant="h6"
@@ -28,7 +28,7 @@ const Stats = () => {
               fontWeight={500}
               color="white"
             >
-              Expert Doctors
+              Active Donors
             </Typography>
           </Grid>
           <Grid item xs={3}>
@@ -38,7 +38,7 @@ const Stats = () => {
               fontWeight={500}
               color="white"
             >
-              26+
+              6+
             </Typography>
             <Typography
               variant="h6"
@@ -46,7 +46,7 @@ const Stats = () => {
               fontWeight={500}
               color="white"
             >
-              Expert Services
+              Emergency Services
             </Typography>
           </Grid>
           <Grid item xs={3}>
@@ -64,7 +64,7 @@ const Stats = () => {
               fontWeight={500}
               color="white"
             >
-              Happy Patients
+              Happy Blood Receivers
             </Typography>
           </Grid>
           <Grid item xs={3}>
@@ -82,7 +82,7 @@ const Stats = () => {
               fontWeight={500}
               color="white"
             >
-              Best Award Winners
+              Best Award Winners Donors
             </Typography>
           </Grid>
         </Grid>

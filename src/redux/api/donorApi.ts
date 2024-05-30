@@ -1,7 +1,7 @@
 import { baseApi } from "./baseApi";
 import { tagTypes } from "../tag-types";
 import { IMeta } from "@/types/common";
-import { IDonor } from "@/types/doctor";
+import { IDonor } from "@/types/donor";
 
 export const donorApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
