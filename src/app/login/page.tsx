@@ -14,10 +14,10 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 
-export const validationSchema = z.object({
-  email: z.string().email("Please enter a valid email address!"),
-  password: z.string().min(6, "Must be at least 6 characters"),
-});
+// export const validationSchema = z.object({
+//   email: z.string().email("Please enter a valid email address!"),
+//   password: z.string().min(6, "Must be at least 6 characters"),
+// });
 
 const LoginPage = () => {
   const [error, setError] = useState("");
@@ -95,10 +95,10 @@ const LoginPage = () => {
           <Box>
             <PHForm
               onSubmit={handleLogin}
-              resolver={zodResolver(validationSchema)}
+              // resolver={zodResolver(validationSchema)}
               defaultValues={{
-                email: "",
-                password: "",
+                email: "sharif@gmail.com",
+                password: "123456",
               }}
             >
               <Grid container spacing={2} my={1}>
