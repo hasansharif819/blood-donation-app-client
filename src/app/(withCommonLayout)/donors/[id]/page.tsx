@@ -39,9 +39,9 @@ const DonorsProfilePage = async ({ params }: PropTypes) => {
   const { data: donor } = await res.json();
 
   //   console.log(donor);
-  const handleRequestBlood = (id: string) => {
-    console.log("Request for bllod id = ", id);
-  };
+  // const handleRequestBlood = (id: string) => {
+  //   console.log("Request for bllod id = ", id);
+  // };
 
   // const placeholder = "https://i.ibb.co/C9R8GrS/IMG-20200803-183036.jpg";
 

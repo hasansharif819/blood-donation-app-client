@@ -6,11 +6,7 @@ import type { NextRequest } from "next/server";
 type Role = keyof typeof roleBasedPrivateRoutes;
 
 const AuthRoutes = ["/login", "/register"];
-const commonPrivateRoutes = [
-  "/dashboard",
-  "/dashboard/change-password",
-  "/doctors",
-];
+const commonPrivateRoutes = ["/dashboard", "/dashboard/change-password"];
 const roleBasedPrivateRoutes = {
   USER: [/^\/dashboard\/user/],
   ADMIN: [/^\/dashboard\/admin/],
@@ -18,7 +14,7 @@ const roleBasedPrivateRoutes = {
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  console.log({ pathname });
+  // console.log({ pathname });
   const accessToken = cookies().get("accessToken")?.value;
 
   if (!accessToken) {
@@ -62,5 +58,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/login", "/register", "/dashboard/:page*", "/doctors/:page*"],
+  matcher: ["/login", "/register", "/dashboard/:page*"],
 };

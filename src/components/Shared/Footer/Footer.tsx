@@ -11,13 +11,10 @@ const Footer = () => {
     <Box bgcolor="rgb(17, 26, 34)" py={5}>
       <Container>
         <Stack direction="row" gap={4} justifyContent="center">
-          <Typography color="#fff" component={Link} href="/consultation">
-            Consultation
-          </Typography>
-          <Typography color="#fff">Health Plans</Typography>
-          <Typography color="#fff">Medicine</Typography>
-          <Typography color="#fff">Diagnostics</Typography>
-          <Typography color="#fff">NGOs</Typography>
+          <Typography color="#fff">Donor Plans</Typography>
+          <Typography color="#fff">Receiver</Typography>
+          <Typography color="#fff">Admin</Typography>
+          <Typography color="#fff">General</Typography>
         </Stack>
 
         <Stack direction="row" gap={2} justifyContent="center" py={3}>

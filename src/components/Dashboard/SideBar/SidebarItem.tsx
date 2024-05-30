@@ -5,8 +5,6 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import MailIcon from "@mui/icons-material/Mail";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
 import { DrawerItem } from "@/types";
 import { usePathname } from "next/navigation";
 
@@ -18,7 +16,6 @@ const SidebarItem = ({ item }: IProps) => {
   const linkPath = `/dashboard/${item.path}`;
   const pathname = usePathname();
 
-  // console.log({ pathname, linkPath });
   return (
     <Link href={linkPath}>
       <ListItem

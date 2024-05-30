@@ -5,7 +5,7 @@ import { DrawerItem, UserRole } from "@/types";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import GroupIcon from "@mui/icons-material/Group";
 import MedicalInformationIcon from "@mui/icons-material/MedicalInformation";
-import BloodtypeIcon from '@mui/icons-material/Bloodtype';
+import BloodtypeIcon from "@mui/icons-material/Bloodtype";
 import PersonIcon from "@mui/icons-material/Person";
 import KeyIcon from "@mui/icons-material/Key";
 
@@ -15,44 +15,44 @@ export const drawerItems = (role: UserRole): DrawerItem[] => {
   const defaultMenus = [
     {
       title: "Profile",
-      path: `profile`,
+      path: "profile",
       icon: PersonIcon,
     },
     {
       title: "Change Password",
-      path: `change-password`,
+      path: "change-password",
       icon: KeyIcon,
     },
   ];
 
   switch (role) {
-    case USER_ROLE.SUPER_ADMIN:
-      roleMenus.push(
-        {
-          title: "Dashboard",
-          path: `${role}`,
-          icon: DashboardIcon,
-        },
-        {
-          title: "Manage Users",
-          path: `${role}/manage-users`,
-          icon: GroupIcon,
-        }
-      );
-      break;
+    // case USER_ROLE.SUPER_ADMIN:
+    // roleMenus.push(
+    //   {
+    //     title: "Dashboard",
+    //     path: `${role}`,
+    //     icon: DashboardIcon,
+    //   },
+    //   {
+    //     title: "Manage Users",
+    //     path: `manage-users`,
+    //     icon: GroupIcon,
+    //   }
+    // );
+    // break;
 
     case USER_ROLE.ADMIN:
       roleMenus.push(
         {
           title: "Dashboard",
-          path: `${role}`,
+          path: "donors",
           icon: DashboardIcon,
         },
         {
           title: "Donors",
-          path: `${role}/donors`,
+          path: "donors",
           icon: BloodtypeIcon,
-        },
+        }
       );
       break;
 

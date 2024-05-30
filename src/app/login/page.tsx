@@ -67,7 +67,7 @@ const LoginPage = () => {
             }}
           >
             <Box>
-              <Image src={assets.svgs.logo} width={50} height={50} alt="logo" />
+              {/* <Image src={assets.svgs.logo} width={50} height={50} alt="logo" /> */}
             </Box>
             <Box>
               <Typography variant="h6" fontWeight={600}>

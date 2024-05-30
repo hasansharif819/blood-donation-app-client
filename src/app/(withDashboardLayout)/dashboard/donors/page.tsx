@@ -48,7 +48,6 @@ const DonorsPage = () => {
     { field: "name", headerName: "Name", flex: 1 },
     { field: "email", headerName: "Email", flex: 1 },
     { field: "bloodType", headerName: "Blood Type", flex: 1 },
-    { field: "location", headerName: "Location", flex: 1 },
     { field: "city", headerName: "City", flex: 1 },
     { field: "totalDonations", headerName: "Total Donations", flex: 1 },
     {
@@ -66,11 +65,11 @@ const DonorsPage = () => {
             >
               <DeleteIcon sx={{ color: "red" }} />
             </IconButton>
-            <Link href={`/dashboard/admin/donors/edit/${row.id}`}>
+            {/* <Link href={`/dashboard/admin/donors/edit/${row.id}`}>
               <IconButton aria-label="delete">
                 <EditIcon />
               </IconButton>
-            </Link>
+            </Link> */}
           </Box>
         );
       },
