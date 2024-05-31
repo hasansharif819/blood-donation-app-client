@@ -1,10 +1,9 @@
 import HeroSection from "@/components/UI/HomePage/HeroSection/HeroSection";
-import HowItWorks from "@/components/UI/HomePage/HowItWorks/HowItWorks";
 import Stats from "@/components/UI/HomePage/Stats/Stats";
-import WhyUs from "@/components/UI/HomePage/WhyUs/WhyUs";
 import TopDonors from "@/components/UI/HomePage/TopDonors/TopDonors";
 import SuccessStories from "@/components/UI/HomePage/SuccessHistory/SuccessHistory";
-import FilteringDonors from "@/components/UI/HomePage/HeroSection/FilteringDonors/FilteringDonors";
+import FilteringDonors from "@/components/UI/HomePage/FilteringDonors/FilteringDonors";
+import DonationTips from "@/components/UI/HomePage/DonationTips/DonationTips";
 
 const HomePage = () => {
   return (
@@ -13,8 +12,7 @@ const HomePage = () => {
       <FilteringDonors />
       <TopDonors />
       <SuccessStories />
-      <WhyUs />
-      <HowItWorks />
+      <DonationTips />
       <Stats />
     </>
   );
