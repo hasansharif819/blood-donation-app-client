@@ -13,6 +13,7 @@ export interface IDonor {
   id: string;
   name: string;
   email: string;
+  location: string;
   profilePhoto: string;
   address: string;
   city: string;

@@ -34,13 +34,13 @@ const NotFoundPage = () => {
               Home
             </Button>
           </Link>
-          {/* <Button
-                  variant='contained'
-                  onClick={() => window.history.back()}
-                  startIcon={<ArrowBackIcon />}
-               >
-                  Back
-               </Button> */}
+          <Button
+            variant="contained"
+            onClick={() => window.history.back()}
+            startIcon={<ArrowBackIcon />}
+          >
+            Back
+          </Button>
         </Stack>
       </Box>
     </Container>
