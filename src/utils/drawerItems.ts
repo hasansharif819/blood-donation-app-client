@@ -3,8 +3,6 @@ import { DrawerItem, UserRole } from "@/types";
 
 //icons
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import GroupIcon from "@mui/icons-material/Group";
-import MedicalInformationIcon from "@mui/icons-material/MedicalInformation";
 import BloodtypeIcon from "@mui/icons-material/Bloodtype";
 import PersonIcon from "@mui/icons-material/Person";
 import KeyIcon from "@mui/icons-material/Key";
