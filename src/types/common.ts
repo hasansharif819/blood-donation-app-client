@@ -34,6 +34,12 @@ export type IGenericErrorMessage = {
   message: string;
 };
 
+export type MetaType = {
+  total?: number;
+  page?: number;
+  limit?: number;
+};
+
 export const Gender = ["MALE", "FEMALE"];
 export const Role = ["ADMIN", "USER"];
 export const UserStatus = ["ACTIVE", "BLOCKED", "DELETED"];
