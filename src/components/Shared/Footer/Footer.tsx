@@ -10,32 +10,45 @@ const Footer = () => {
   return (
     <Box bgcolor="rgb(17, 26, 34)" py={5}>
       <Container>
-        <Stack direction="row" gap={4} justifyContent="center">
+        <Stack
+          direction={{ xs: "column", sm: "row" }}
+          gap={4}
+          justifyContent="center"
+          alignItems="center"
+          textAlign={{ xs: "center", sm: "left" }}
+        >
           <Typography color="#fff">Donors</Typography>
           <Typography color="#fff">Receiver</Typography>
           <Typography color="#fff">Admin</Typography>
           <Typography color="#fff">General</Typography>
         </Stack>
 
-        <Stack direction="row" gap={2} justifyContent="center" py={3}>
+        <Stack
+          direction="row"
+          gap={2}
+          justifyContent="center"
+          py={3}
+        >
           <Image src={facebookIcon} width={30} height={30} alt="facebook" />
-          <Image src={instagramIcon} width={30} height={30} alt="facebook" />
-          <Image src={twitterIcon} width={30} height={30} alt="facebook" />
-          <Image src={linkedIcon} width={30} height={30} alt="facebook" />
+          <Image src={instagramIcon} width={30} height={30} alt="instagram" />
+          <Image src={twitterIcon} width={30} height={30} alt="twitter" />
+          <Image src={linkedIcon} width={30} height={30} alt="linkedin" />
         </Stack>
-        {/* <div className="border-b-[1px] border-dashed"></div> */}
+
         <Box
           sx={{
             border: "1px dashed lightgray",
+            mt: 3,
+            mb: 3,
           }}
         ></Box>
 
         <Stack
-          direction="row"
+          direction={{ xs: "column", sm: "row" }}
           gap={2}
           justifyContent="space-between"
           alignItems="center"
-          py={3}
+          textAlign={{ xs: "center", sm: "left" }}
         >
           <Typography component="p" color="white">
             &copy;2024 Blood Donation App. All Rights Reserved.
@@ -46,16 +59,18 @@ const Footer = () => {
             href="/"
             fontWeight={600}
             color="white"
+            sx={{
+              fontSize: { xs: "1.5rem", sm: "2rem" }
+            }}
           >
             Bl
             <Box component="span" color="red">
               oo
             </Box>
-            {/* {" "} */}d Do
+            d Do
             <Box component="span" color="primary.main">
               nati
             </Box>
-            {/* {" "} */}
             on App
           </Typography>
           <Typography component="p" color="white">

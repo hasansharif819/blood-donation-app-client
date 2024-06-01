@@ -64,7 +64,12 @@ const DonationTips: React.FC = () => {
       }}
     >
       <Container maxWidth="md">
-        <Typography variant="h4" align="center" gutterBottom>
+        <Typography variant="h4" align="center" gutterBottom sx={{fontSize: {
+              xs: "32px",
+              sm: "32px",
+              md: "32px",
+              lg: "48px",
+            }}}>
           Blood Donation Tips and Guidelines
         </Typography>
         <Box sx={{ width: "100%", bgcolor: "background.paper" }}>

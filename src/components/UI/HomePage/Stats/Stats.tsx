@@ -13,13 +13,18 @@ const Stats = () => {
       <Container maxWidth="lg">
         <Box
           sx={{
-            backgroundImage: "linear-gradient(45deg,blue, cyan)",
+            backgroundImage: "linear-gradient(45deg, blue, cyan)",
             borderRadius: "20px",
             margin: "50px auto",
           }}
         >
-          <Grid container spacing={2} textAlign="center" p={5}>
-            <Grid item xs={3}>
+          <Grid
+            container
+            spacing={2}
+            textAlign="center"
+            p={{ xs: 2, sm: 3, md: 5 }}
+          >
+            <Grid item xs={12} sm={6} md={3}>
               <Typography
                 variant="h3"
                 component="h1"
@@ -37,7 +42,7 @@ const Stats = () => {
                 Active Donors
               </Typography>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <Typography
                 variant="h3"
                 component="h1"
@@ -55,7 +60,7 @@ const Stats = () => {
                 Emergency Services
               </Typography>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <Typography
                 variant="h3"
                 component="h1"
@@ -73,7 +78,7 @@ const Stats = () => {
                 Happy Blood Receivers
               </Typography>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <Typography
                 variant="h3"
                 component="h1"

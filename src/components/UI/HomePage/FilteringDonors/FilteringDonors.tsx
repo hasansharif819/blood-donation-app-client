@@ -54,7 +54,16 @@ const FilteringDonors: React.FC = () => {
           variant="h3"
           color={"white"}
           textAlign={"center"}
-          sx={{ textAlign: "center", margin: "20px auto" }}
+          sx={{
+            textAlign: "center",
+            margin: "20px auto",
+            fontSize: {
+              xs: "32px",
+              sm: "32px",
+              md: "32px",
+              lg: "48px",
+            },
+          }}
         >
           Filtered Donors
         </Typography>
@@ -63,11 +72,27 @@ const FilteringDonors: React.FC = () => {
             display: "flex",
             justifyContent: "space-between",
             marginBottom: "20px",
-            width: "80%",
             margin: "0 auto",
+            flexDirection: {
+              xs: "column",
+              sm: "column",
+              md: "column",
+              lg: "row",
+            },
+            width: {
+              xs: "100%",
+              sm: "100%",
+              md: "100%",
+              lg: "80%",
+            },
           }}
         >
-          <FormControl sx={{ width: "30%" }}>
+          <FormControl sx={{ width: {
+              xs: "100%",
+              sm: "100%",
+              md: "100%",
+              lg: "30%",
+            }, marginBottom: 2 }}>
             <InputLabel>Blood Type</InputLabel>
             <Select
               value={bloodType}
@@ -92,7 +117,12 @@ const FilteringDonors: React.FC = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             sx={{
-              width: "30%",
+              width: {
+                xs: "100%",
+                sm: "100%",
+                md: "100%",
+                lg: "30%",
+              }, marginBottom: 2
             }}
           />
           <TextField
@@ -102,7 +132,12 @@ const FilteringDonors: React.FC = () => {
             defaultValue={defaultLocation}
             onChange={(e) => setDefaultLocation(e.target.value)}
             sx={{
-              width: "30%",
+              width: {
+                xs: "100%",
+                sm: "100%",
+                md: "100%",
+                lg: "30%",
+              }, marginBottom: 5
             }}
           />
         </Box>
@@ -111,13 +146,16 @@ const FilteringDonors: React.FC = () => {
           sx={{
             display: "grid",
             gap: 2,
-            gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+            gridTemplateColumns: {
+              xs: "repeat(auto-fill, minmax(250px, 1fr))",
+              sm: "repeat(auto-fill, minmax(300px, 1fr))",
+              md: "repeat(auto-fill, minmax(300px, 1fr))",
+            },
             margin: "0 auto",
             padding: 2,
             borderRadius: 8,
           }}
         >
-          {/* {filteredDonors?.slice(0, 9).map((donor) => ( */}
           {filteredDonors?.map((donor) => (
             <DonorCard key={donor.id} donor={donor} />
           ))}

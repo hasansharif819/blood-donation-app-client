@@ -51,7 +51,12 @@ const SuccessStories = () => {
         <Typography
           variant="h3"
           align="center"
-          sx={{ mb: 6 }}
+          sx={{ mb: 6, fontSize: {
+            xs: "32px",
+            sm: "32px",
+            md: "32px",
+            lg: "48px",
+          } }}
           color={"primary.main"}
         >
           Success Stories

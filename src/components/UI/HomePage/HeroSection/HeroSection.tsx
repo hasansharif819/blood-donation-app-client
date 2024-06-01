@@ -41,12 +41,27 @@ const HeroSection = () => {
             zIndex: 1,
           }}
         >
+          <Box sx={{
+            textAlign: "center",
+            margin: "20px auto",
+            fontSize: {
+              xs: "24px",
+              sm: "24px",
+              md: "32px",
+              lg: "40px",
+            },
+          }}>
           <Typography
             variant="h2"
             component="h1"
             fontWeight={700}
             color="white"
-            sx={{ mb: 2 }}
+            sx={{ mb: 2, fontSize: {
+              xs: "24px",
+              sm: "24px",
+              md: "32px",
+              lg: "40px",
+            }, }}
           >
             Donate Blood,
           </Typography>
@@ -55,7 +70,12 @@ const HeroSection = () => {
             component="h1"
             fontWeight={700}
             color="tomato"
-            sx={{ mb: 2 }}
+            sx={{ mb: 2, fontSize: {
+              xs: "24px",
+              sm: "24px",
+              md: "32px",
+              lg: "40px",
+            }, }}
           >
             Save Lives.
           </Typography>
@@ -64,10 +84,16 @@ const HeroSection = () => {
             component="h1"
             fontWeight={700}
             color="primary.main"
-            sx={{ mb: 4 }}
+            sx={{ mb: 4, fontSize: {
+              xs: "24px",
+              sm: "24px",
+              md: "32px",
+              lg: "40px",
+            }, }}
           >
             Be a Hero Today
           </Typography>
+          </Box>
           <Typography variant="body1" color="white" sx={{ mb: 4 }}>
             Every donation helps save up to three lives. Your contribution is
             vital and can make a significant difference in someone’s life. Join
@@ -81,6 +107,17 @@ const HeroSection = () => {
                 xs: "center",
                 md: "flex-start",
                 color: "white",
+              },
+              flexDirection: {
+                xs: "column",
+                sm: "column",
+                md: "column",
+                lg: "row",
+              },
+              width: {
+                xs: "100%",
+                sm: "100%",
+                md: "100%",
               },
             }}
           >
@@ -117,8 +154,8 @@ const HeroSection = () => {
         >
           <Box
             sx={{
-              width: 500,
-              height: 500,
+              width: { xs: 300, sm: 400, md: 500 },
+              height: { xs: 300, sm: 400, md: 500 },
               borderRadius: "50%",
               overflow: "hidden",
               boxShadow: 6,
@@ -128,6 +165,8 @@ const HeroSection = () => {
               src={bloodgift}
               layout="responsive"
               alt="blood donation hero"
+              width={500}
+              height={500}
             />
           </Box>
         </Box>
