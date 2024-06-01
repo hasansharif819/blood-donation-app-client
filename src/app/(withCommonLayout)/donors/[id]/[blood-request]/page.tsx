@@ -36,6 +36,7 @@ const validationSchema = z.object({
 
 const RequestforBlood = ({ params }: PropTypes) => {
   const { id } = params;
+  console.log("Donors id = ", id);
   const router = useRouter();
 
   const [requestForBlood, { isLoading: updating }] =

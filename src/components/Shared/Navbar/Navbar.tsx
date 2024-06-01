@@ -11,6 +11,7 @@ import BloodtypeIcon from "@mui/icons-material/Bloodtype";
 
 const Navbar = () => {
   const userInfo = useUserInfo();
+  // console.log("User info from navbar = ", userInfo);
   const router = useRouter();
 
   const handleLogOut = () => {
