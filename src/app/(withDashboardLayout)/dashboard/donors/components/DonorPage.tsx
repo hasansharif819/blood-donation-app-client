@@ -34,6 +34,10 @@ const DonorPage = () => {
   const meta = data?.meta;
 
   const handleDelete = async (id: string) => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this request?"
+    );
+    if (!confirmed) return;
     try {
       const res = await deleteDonor(id).unwrap();
       if (res?.id) {
@@ -48,6 +52,7 @@ const DonorPage = () => {
     { field: "name", headerName: "Name", flex: 1 },
     { field: "email", headerName: "Email", flex: 1 },
     { field: "bloodType", headerName: "Blood Type", flex: 1 },
+    { field: "location", headerName: "Location", flex: 1 },
     { field: "city", headerName: "City", flex: 1 },
     { field: "totalDonations", headerName: "Total Donations", flex: 1 },
     {
