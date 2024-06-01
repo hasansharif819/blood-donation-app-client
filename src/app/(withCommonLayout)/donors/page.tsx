@@ -38,7 +38,6 @@ const Donors = () => {
 
   return (
     <Container>
-      {/* <DashedLine /> */}
       <Stack direction="row" justifyContent="space-between" alignItems="right">
         <TextField
           fullWidth
@@ -64,7 +63,6 @@ const Donors = () => {
           </Box>
         )}
       </Box>
-      {/* <DashedLine /> */}
     </Container>
   );
 };

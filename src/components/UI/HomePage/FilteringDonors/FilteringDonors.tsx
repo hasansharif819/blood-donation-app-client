@@ -18,22 +18,26 @@ const FilteringDonors: React.FC = () => {
   const [filteredDonors, setFilteredDonors] = useState<IDonor[]>([]);
   const [defaultLocation, setDefaultLocation] = useState("Dhaka");
   const [bloodType, setBloodType] = useState("");
+  const [name, setName] = useState("");
 
   const { data, isLoading } = useGetAllDonorsQuery({});
 
   useEffect(() => {
     if (data && data.donors) {
-      filterDonors(defaultLocation, bloodType);
+      filterDonors(defaultLocation, bloodType, name);
     }
-  }, [data, defaultLocation, bloodType]);
+  }, [data, defaultLocation, bloodType, name]);
 
-  const filterDonors = (location: string, bloodType: string) => {
+  const filterDonors = (location: string, bloodType: string, name: string) => {
     const filtered = data?.donors?.filter((donor: any) => {
       const matchesLocation = donor.location
         .toLowerCase()
         .includes(location.toLowerCase());
       const matchesBloodType = bloodType ? donor.bloodType === bloodType : true;
-      return matchesLocation && matchesBloodType;
+      const matchesName = name
+        ? donor.name.toLowerCase().includes(name.toLowerCase())
+        : true;
+      return matchesLocation && matchesBloodType && matchesName;
     });
     setFilteredDonors(filtered || []);
   };
@@ -63,7 +67,7 @@ const FilteringDonors: React.FC = () => {
             margin: "0 auto",
           }}
         >
-          <FormControl sx={{ width: "45%" }}>
+          <FormControl sx={{ width: "30%" }}>
             <InputLabel>Blood Type</InputLabel>
             <Select
               value={bloodType}
@@ -83,12 +87,22 @@ const FilteringDonors: React.FC = () => {
           </FormControl>
           <TextField
             type="text"
+            label="Enter name"
+            variant="outlined"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            sx={{
+              width: "30%",
+            }}
+          />
+          <TextField
+            type="text"
             label="Enter location"
             variant="outlined"
             defaultValue={defaultLocation}
             onChange={(e) => setDefaultLocation(e.target.value)}
             sx={{
-              width: "45%",
+              width: "30%",
             }}
           />
         </Box>
