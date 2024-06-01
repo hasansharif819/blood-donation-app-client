@@ -117,7 +117,8 @@ const FilteringDonors: React.FC = () => {
             borderRadius: 8,
           }}
         >
-          {filteredDonors?.slice(0, 9).map((donor) => (
+          {/* {filteredDonors?.slice(0, 9).map((donor) => ( */}
+          {filteredDonors?.map((donor) => (
             <DonorCard key={donor.id} donor={donor} />
           ))}
         </Box>
