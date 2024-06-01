@@ -10,11 +10,14 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useDebounced } from "@/redux/hooks";
 import { toast } from "sonner";
 import EditIcon from "@mui/icons-material/Edit";
-import Link from "next/link";
 import DonorModal from "./DonorModal";
+import UpdateDonorModal from "./UpdateDonorModal";
 
 const DonorPage = () => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const [selectedDonorId, setSelectedDonorId] = useState<string>("");
+
   const query: Record<string, any> = {};
   const [searchTerm, setSearchTerm] = useState<string>("");
 
@@ -51,9 +54,10 @@ const DonorPage = () => {
   const columns: GridColDef[] = [
     { field: "name", headerName: "Name", flex: 1 },
     { field: "email", headerName: "Email", flex: 1 },
+    { field: "role", headerName: "Role", flex: 1 },
+    { field: "status", headerName: "Status", flex: 1 },
     { field: "bloodType", headerName: "Blood Type", flex: 1 },
     { field: "location", headerName: "Location", flex: 1 },
-    { field: "city", headerName: "City", flex: 1 },
     { field: "totalDonations", headerName: "Total Donations", flex: 1 },
     {
       field: "action",
@@ -70,11 +74,15 @@ const DonorPage = () => {
             >
               <DeleteIcon sx={{ color: "red" }} />
             </IconButton>
-            <Link href={`/dashboard/admin/donors/edit/${row.id}`}>
-              <IconButton aria-label="delete">
-                <EditIcon />
-              </IconButton>
-            </Link>
+
+            <IconButton
+              onClick={() => {
+                setSelectedDonorId(row.id);
+                setIsUpdateModalOpen(true);
+              }}
+            >
+              <EditIcon />
+            </IconButton>
           </Box>
         );
       },
@@ -82,24 +90,36 @@ const DonorPage = () => {
   ];
 
   return (
-    <Box>
-      <Stack direction="row" justifyContent="space-between" alignItems="center">
-        <Button onClick={() => setIsModalOpen(true)}>Create New User</Button>
-        <DonorModal open={isModalOpen} setOpen={setIsModalOpen} />
-        <TextField
-          onChange={(e) => setSearchTerm(e.target.value)}
-          size="small"
-          placeholder="Search Donors"
-        />
-      </Stack>
-      {!isLoading ? (
-        <Box my={2}>
-          <DataGrid rows={donors} columns={columns} />
-        </Box>
-      ) : (
-        <h1>Loading.....</h1>
-      )}
-    </Box>
+    <>
+      <UpdateDonorModal
+        open={isUpdateModalOpen}
+        setOpen={setIsUpdateModalOpen}
+        id={selectedDonorId}
+      />
+
+      <Box>
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          <Button onClick={() => setIsModalOpen(true)}>Create New User</Button>
+          <DonorModal open={isModalOpen} setOpen={setIsModalOpen} />
+          <TextField
+            onChange={(e) => setSearchTerm(e.target.value)}
+            size="small"
+            placeholder="Search Donors"
+          />
+        </Stack>
+        {!isLoading ? (
+          <Box my={2}>
+            <DataGrid rows={donors} columns={columns} />
+          </Box>
+        ) : (
+          <h1>Loading.....</h1>
+        )}
+      </Box>
+    </>
   );
 };
 

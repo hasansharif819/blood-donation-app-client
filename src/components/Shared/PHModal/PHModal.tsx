@@ -49,13 +49,13 @@ export default function PHModal({
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
-        maxWidth="md" // Set the maximum width of the modal
-        fullWidth // Ensure the modal takes the full width of the maxWidth
+        maxWidth="md"
+        fullWidth
         sx={{
           "& .MuiDialog-paper": {
-            minWidth: "500px", // Set a minimum width for the modal
-            maxWidth: "800px", // Set a maximum width for the modal
-            height: "auto", // Adjust the height as needed
+            minWidth: "500px",
+            maxWidth: "800px",
+            height: "auto",
           },
           ...sx,
         }}

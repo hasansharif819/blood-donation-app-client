@@ -57,6 +57,18 @@ export const donorApi = baseApi.injectEndpoints({
       },
       invalidatesTags: [tagTypes.user],
     }),
+
+    // update donor By Admin
+    updateDonorByAdmin: build.mutation({
+      query: (data) => {
+        return {
+          url: "/update-user",
+          method: "PUT",
+          data,
+        };
+      },
+      invalidatesTags: [tagTypes.user],
+    }),
   }),
 });
 
@@ -66,4 +78,5 @@ export const {
   useDeleteDonorMutation,
   useGetDonorQuery,
   useUpdateDonorMutation,
+  useUpdateDonorByAdminMutation,
 } = donorApi;
