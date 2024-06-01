@@ -3,8 +3,11 @@
 import useUserInfo from "@/hooks/useUserInfo";
 import { logoutUser } from "@/services/actions/logoutUser";
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import bloodLogo from "@/assets/images/blood-logo.png";
+import BloodtypeIcon from "@mui/icons-material/Bloodtype";
 
 const Navbar = () => {
   const userInfo = useUserInfo();
@@ -27,24 +30,44 @@ const Navbar = () => {
           justifyContent="space-between"
           alignItems="center"
         >
-          <Typography variant="h4" component={Link} href="/" fontWeight={600}>
-            Bl
-            <Box component="span" color="red">
-              oo
+          <Stack direction="row" alignItems="center" gap={1}>
+            <Box
+              sx={{
+                borderRadius: "50%",
+                overflow: "hidden",
+                width: 80,
+                height: 80,
+              }}
+            >
+              <Link href="/">
+                <Image
+                  src={bloodLogo}
+                  alt="Logo"
+                  width={80}
+                  height={80}
+                  style={{ objectFit: "cover" }}
+                />
+              </Link>
             </Box>
-            {/* {" "} */}d Dona
-            <Box component="span" color="tomato">
-              tion
-            </Box>{" "}
-            App
-          </Typography>
+            <Typography variant="h4" component={Link} href="/" fontWeight={600}>
+              Bl
+              <Box component="span" color="red">
+                <BloodtypeIcon fontSize="large" sx={{ color: "red" }} />
+                <BloodtypeIcon fontSize="large" sx={{ color: "red" }} />
+              </Box>
+              d Dona
+              <Box component="span" color="tomato">
+                tion
+              </Box>{" "}
+              App
+            </Typography>
+          </Stack>
 
           <Stack direction="row" justifyContent="space-between" gap={4}>
             <Typography component={Link} href="/" color="#ffffff">
               Home
             </Typography>
 
-            {/* <Typography color="#ffffff">Diagnostics</Typography> */}
             <Typography component={Link} href="/donors" color="#ffffff">
               Donors
             </Typography>

@@ -48,7 +48,12 @@ const SuccessStories = () => {
       }}
     >
       <Container maxWidth="lg">
-        <Typography variant="h3" align="center" sx={{ mb: 6 }}>
+        <Typography
+          variant="h3"
+          align="center"
+          sx={{ mb: 6 }}
+          color={"primary.main"}
+        >
           Success Stories
         </Typography>
         <Box position="relative">

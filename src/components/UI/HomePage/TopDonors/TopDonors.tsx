@@ -1,4 +1,3 @@
-import DashedLine from "@/components/UI/Donor/DashedLine";
 import DonorCard from "@/components/UI/Donor/DonorCard";
 import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 
@@ -11,7 +10,6 @@ const TopDonors = async () => {
 
   return (
     <Container>
-      <DashedLine />
       <Typography variant="h3" color={"primary.main"} textAlign={"center"}>
         Top Donors
       </Typography>
@@ -31,7 +29,6 @@ const TopDonors = async () => {
           </Box>
         )}
       </Box>
-      <DashedLine />
     </Container>
   );
 };

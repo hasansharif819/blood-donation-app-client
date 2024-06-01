@@ -47,7 +47,9 @@ const FilteringDonors: React.FC = () => {
     >
       <Container maxWidth="lg">
         <Typography
-          variant="h4"
+          variant="h3"
+          color={"white"}
+          textAlign={"center"}
           sx={{ textAlign: "center", margin: "20px auto" }}
         >
           Filtered Donors

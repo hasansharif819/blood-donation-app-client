@@ -11,7 +11,7 @@ const Footer = () => {
     <Box bgcolor="rgb(17, 26, 34)" py={5}>
       <Container>
         <Stack direction="row" gap={4} justifyContent="center">
-          <Typography color="#fff">Donor Plans</Typography>
+          <Typography color="#fff">Donors</Typography>
           <Typography color="#fff">Receiver</Typography>
           <Typography color="#fff">Admin</Typography>
           <Typography color="#fff">General</Typography>
