@@ -50,7 +50,8 @@ const DonationRequestsMadeByMe = () => {
   return (
     <>
       {isModalOpen && selectedId && (
-        <UpdateRequestMadeByMeModal data={data}
+        <UpdateRequestMadeByMeModal
+          data={data}
           open={isModalOpen}
           setOpen={setIsModalOpen}
           id={selectedId}
@@ -97,6 +98,12 @@ const DonationRequestsMadeByMe = () => {
                   sx={{
                     position: "absolute",
                     bottom: 0,
+                    display: "flex",
+                    flexDirection: {
+                      sm: "column",
+                      md: "column",
+                      lg: "row",
+                    },
                   }}
                 >
                   <Button
