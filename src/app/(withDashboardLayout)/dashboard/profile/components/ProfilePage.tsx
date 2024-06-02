@@ -74,7 +74,17 @@ const ProfilePage = () => {
         id={data?.id}
       />
       <Container sx={{ mt: 4 }}>
-        <Grid container spacing={4} sx={{ mb: 15 }}>
+        <Grid
+          container
+          spacing={4}
+          sx={{
+            mb: {
+              xs: 5,
+              sm: 5,
+              md: 10,
+            },
+          }}
+        >
           <Grid xs={12} md={4}>
             <Box
               sx={{

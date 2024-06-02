@@ -4,7 +4,7 @@ const DonorInformation = ({ data }: any) => {
   return (
     <>
       <Typography variant="h5" color="primary.main" mb={2}>
-        Personal Information for {data?.name}.
+        Personal Information for {data?.name || "Donors"}.
       </Typography>
 
       <Grid container spacing={2}>

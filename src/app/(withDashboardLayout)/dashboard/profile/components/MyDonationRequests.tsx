@@ -37,7 +37,21 @@ const MyDonationRequests = () => {
         />
       )}
       <Container>
-        <Typography variant="h3" sx={{ mt: 5, mb: 3, textAlign: "center" }}>
+        <Typography
+          variant="h3"
+          sx={{
+            mt: 5,
+            mb: 3,
+            textAlign: "center",
+            fontSize: {
+              xs: "20px",
+              sm: "20px",
+              md: "24px",
+              lg: "32px",
+            },
+            color: "primary.main",
+          }}
+        >
           My Donation Requests
         </Typography>
         <Grid container spacing={3}>
