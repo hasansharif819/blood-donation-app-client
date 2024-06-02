@@ -78,7 +78,10 @@ const ProfilePage = () => {
           <Grid xs={12} md={4}>
             <Box
               sx={{
-                height: "100%",
+                height: {
+                  lg: "100%",
+                  xl: "100%",
+                },
                 maxHeight: 500,
                 width: "100%",
                 overflow: "hidden",

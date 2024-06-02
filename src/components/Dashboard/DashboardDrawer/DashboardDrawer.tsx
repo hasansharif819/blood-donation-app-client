@@ -12,7 +12,7 @@ import Typography from "@mui/material/Typography";
 import SideBar from "../SideBar/SideBar";
 import { Avatar, Badge, Stack } from "@mui/material";
 import AccountMenu from "../AccountMenu/AccountMenu";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import avatar from "@/assets/images/avatar.png";
 import { useGetMYProfileQuery } from "@/redux/api/myProfile";
 
 const drawerWidth = 240;
@@ -88,13 +88,30 @@ export default function DashboardDrawer({
                 variant="h6"
                 noWrap
                 component="div"
-                sx={{ color: "primary.main" }}
+                sx={{
+                  color: "primary.main",
+                  fontSize: {
+                    sm: "16px",
+                    md: "16px",
+                    lg: "24px",
+                    xl: "32px",
+                  },
+                  maxWidth: {
+                    sm: "205px",
+                    md: "205px",
+                    lg: "100%",
+                  },
+                  textWrap: "wrap",
+                }}
               >
                 Welcome to Blood Donation App
               </Typography>
             </Box>
             <Stack direction="row" gap={3}>
-              <Avatar alt={data?.name} src={data?.profilePhoto} />
+              <Avatar
+                alt={data?.name}
+                src={data?.profilePicture ? data?.profilePicture : avatar}
+              />
               <AccountMenu />
             </Stack>
           </Box>
@@ -112,7 +129,7 @@ export default function DashboardDrawer({
           onTransitionEnd={handleDrawerTransitionEnd}
           onClose={handleDrawerClose}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true,
           }}
           sx={{
             display: { xs: "block", sm: "none" },
