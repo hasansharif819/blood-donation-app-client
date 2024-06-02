@@ -193,7 +193,9 @@ const Navbar = () => {
   );
 
   return (
-    <Box sx={{ bgcolor: "primary.main" }}>
+    <Box
+      sx={{ bgcolor: "primary.main", position: "sticky", top: 0, zIndex: 999 }}
+    >
       <Container>
         <Stack
           py={2}
@@ -269,9 +271,12 @@ const Navbar = () => {
             direction="row"
             justifyContent="space-between"
             gap={4}
-            sx={{ display: { xs: "none", md: "flex" }, marginRight: {
-              lg: 5
-            } }}
+            sx={{
+              display: { xs: "none", md: "flex" },
+              marginRight: {
+                lg: 5,
+              },
+            }}
           >
             <Typography component={Link} href="/" color="#ffffff">
               Home
