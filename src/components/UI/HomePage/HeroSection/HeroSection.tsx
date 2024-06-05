@@ -1,7 +1,7 @@
 import { Box, Button, Container, Typography } from "@mui/material";
 import Image from "next/image";
 import blood1 from "@/assets/images/blood1.jpg";
-import bloodgift from "@/assets/images/blood-gift.jpg";
+import bloodBag from "@/assets/images/blood-bag.jpg";
 import Link from "next/link";
 
 const HeroSection = () => {
@@ -41,58 +41,69 @@ const HeroSection = () => {
             zIndex: 1,
           }}
         >
-          <Box sx={{
-            textAlign: "center",
-            margin: "20px auto",
-            fontSize: {
-              xs: "24px",
-              sm: "24px",
-              md: "32px",
-              lg: "40px",
-            },
-          }}>
-          <Typography
-            variant="h2"
-            component="h1"
-            fontWeight={700}
-            color="white"
-            sx={{ mb: 2, fontSize: {
-              xs: "24px",
-              sm: "24px",
-              md: "32px",
-              lg: "40px",
-            }, }}
+          <Box
+            sx={{
+              textAlign: "center",
+              margin: "20px auto",
+              fontSize: {
+                xs: "24px",
+                sm: "24px",
+                md: "32px",
+                lg: "40px",
+              },
+            }}
           >
-            Donate Blood,
-          </Typography>
-          <Typography
-            variant="h2"
-            component="h1"
-            fontWeight={700}
-            color="tomato"
-            sx={{ mb: 2, fontSize: {
-              xs: "24px",
-              sm: "24px",
-              md: "32px",
-              lg: "40px",
-            }, }}
-          >
-            Save Lives.
-          </Typography>
-          <Typography
-            variant="h2"
-            component="h1"
-            fontWeight={700}
-            color="primary.main"
-            sx={{ mb: 4, fontSize: {
-              xs: "24px",
-              sm: "24px",
-              md: "32px",
-              lg: "40px",
-            }, }}
-          >
-            Be a Hero Today
-          </Typography>
+            <Typography
+              variant="h2"
+              component="h1"
+              fontWeight={700}
+              color="white"
+              sx={{
+                mb: 2,
+                fontSize: {
+                  xs: "24px",
+                  sm: "24px",
+                  md: "32px",
+                  lg: "40px",
+                },
+              }}
+            >
+              Donate Blood,
+            </Typography>
+            <Typography
+              variant="h2"
+              component="h1"
+              fontWeight={700}
+              color="tomato"
+              sx={{
+                mb: 2,
+                fontSize: {
+                  xs: "24px",
+                  sm: "24px",
+                  md: "32px",
+                  lg: "40px",
+                },
+              }}
+            >
+              Save Lives.
+            </Typography>
+            <Typography
+              variant="h2"
+              component="h1"
+              fontWeight={700}
+              color="primary.main"
+              sx={{
+                mb: 4,
+                fontSize: {
+                  xs: "24px",
+                  sm: "24px",
+                  md: "32px",
+                  lg: "40px",
+                },
+              }}
+            >
+              Be a Hero Today
+            </Typography>
           </Box>
           <Typography variant="body1" color="white" sx={{ mb: 4 }}>
             Every donation helps save up to three lives. Your contribution is
@@ -162,8 +173,8 @@ const HeroSection = () => {
             }}
           >
             <Image
-              src={bloodgift}
-              layout="responsive"
+              src={bloodBag}
+              // layout="responsive"
               alt="blood donation hero"
               width={500}
               height={500}
