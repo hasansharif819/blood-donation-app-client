@@ -10,7 +10,8 @@ type PropTypes = {
 
 const DonorsProfilePage = async ({ params }: PropTypes) => {
   const res = await fetch(
-    `https://blood-donation-server-final-six.vercel.app/api/donor-list/${params.id}`
+    // `https://blood-donation-server-final-six.vercel.app/api/donor-list/${params.id}`
+    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/donor-list/${params.id}`
   );
   const { data: donor } = await res.json();
 

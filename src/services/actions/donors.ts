@@ -2,8 +2,8 @@
 
 export const donors = async () => {
   const res = await fetch(
-    // `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/donor-list`,
-    `https://blood-donation-server-final-six.vercel.app/api/donor-list`,
+    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/donor-list`,
+    // `https://blood-donation-server-final-six.vercel.app/api/donor-list`,
     {
       method: "GET",
       //   headers: {

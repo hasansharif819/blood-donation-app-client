@@ -120,7 +120,7 @@ const LoginPage = () => {
                 </Grid>
               </Grid>
 
-              {/* <Link href={"/forgot-password"}>
+              <Link href={"/forgot-password"}>
                 <Typography
                   mb={1}
                   textAlign="end"
@@ -132,7 +132,7 @@ const LoginPage = () => {
                 >
                   Forgot Password?
                 </Typography>
-              </Link> */}
+              </Link>
 
               <Button
                 sx={{

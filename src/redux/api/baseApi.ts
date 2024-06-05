@@ -7,6 +7,7 @@ export const baseApi = createApi({
   reducerPath: "api",
   baseQuery: axiosBaseQuery({
     baseUrl: "https://blood-donation-server-final-six.vercel.app/api",
+    // baseUrl: "http://localhost:5000/api",
   }),
   endpoints: () => ({}),
   tagTypes: tagTypesList,
