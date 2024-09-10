@@ -9,7 +9,9 @@ type TInputProps = {
   fullWidth?: boolean;
   sx?: SxProps;
   placeholder?: string;
+  helperText?: string;
   required?: boolean;
+  error?: boolean;
 };
 
 const PHInput = ({

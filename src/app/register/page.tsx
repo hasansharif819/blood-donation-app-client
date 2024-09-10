@@ -2,6 +2,7 @@
 import {
   Box,
   Button,
+  CircularProgress,
   Container,
   Grid,
   Stack,
@@ -25,54 +26,37 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import PHSelectField from "@/components/Forms/PHSelectField";
 import { BloodGroups } from "@/types";
 import PHDatePicker from "@/components/Forms/PHDatePicker";
-
-// export const validationSchema = z.object({
-//   name: z.string().min(1, "Please enter your name!"),
-//   email: z.string().email("Please enter a valid email address!"),
-//   password: z.string().min(6, "Must be at least 6 characters"),
-//   bloodTYpe: z.string().min(1, "Please enter your Blood Group!"),
-//   location: z.string().min(1, "Please enter your location!"),
-//   age: z.string().min(1, "Please enter your age!"),
-//   bio: z.string().min(1, "Please enter your bio!"),
-//   lastDonationDate: z.string().min(1, "Please enter your lastDonationDate!"),
-// });
-
-// export const validationSchema = z.object({
-//   password: z.string().min(6, "Must be at least 6 characters"),
-//   patient: userValidationSchema,
-// });
-
-// export const defaultValues = {
-//   name: "",
-//   email: "",
-//   password: "",
-//   contactNumber: "",
-//   address: "",
-// };
+import { useState } from "react";
+import dayjs from "dayjs";
 
 const RegisterPage = () => {
   const router = useRouter();
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleRegister = async (values: any) => {
-    // const data = modifyPayload(values);
-    // console.log(values);
-
     const password = values.password;
     const confirmPassword = values.confirmPassword;
-
+  
     if (password !== confirmPassword) {
       return toast.error("Passwords do not match!");
     }
-
+  
     const modifiedValues = {
       ...values,
-      age: parseInt(values.age), // Convert age to a number
+      age: parseInt(values.age),
+      lastDonationDate: dayjs(values.lastDonationDate).format('YYYY-MM-DD'),
     };
-
+  
     try {
-      // const res = await registerUser(values);
+      setIsLoading(true);
       const res = await registerUser(modifiedValues);
-      console.log(res);
+      // console.log(res);
+
+      if(res.success === false){
+        setError("Please fill all the fields carefully!!!")
+      }
+
       if (res?.data?.id) {
         toast.success(res?.message);
         const result = await userLogin({
@@ -81,11 +65,13 @@ const RegisterPage = () => {
         });
         if (result?.data?.token) {
           storeUserInfo({ accessToken: result?.data?.token });
-          router.push("/dashboard");
+          router.push("/");
         }
       }
+      setIsLoading(false);
     } catch (err: any) {
-      // console.error(err.message);
+      setError("Please fill all the fields carefully!!!");
+      setIsLoading(false);
     }
   };
 
@@ -115,7 +101,7 @@ const RegisterPage = () => {
             }}
           >
             <Box>
-              {/* <Image src={assets.svgs.logo} width={50} height={50} alt="logo" /> */}
+              <Image src={assets.images.bloodLogo} width={50} height={50} alt="logo" />
             </Box>
             <Box>
               <Typography variant="h6" fontWeight={600}>
@@ -127,8 +113,6 @@ const RegisterPage = () => {
           <Box>
             <PHForm
               onSubmit={handleRegister}
-              // resolver={zodResolver(validationSchema)}
-              // defaultValues={defaultValues}
             >
               <Grid container spacing={2} my={1}>
                 <Grid item md={12}>
@@ -158,14 +142,6 @@ const RegisterPage = () => {
                     name="confirmPassword"
                   />
                 </Grid>
-                {/* <Grid item md={6}>
-                  <PHInput
-                    label="Blood Type"
-                    type="text"
-                    fullWidth={true}
-                    name="bloodType"
-                  />
-                </Grid> */}
                 <Grid item xs={12} sm={12} md={6}>
                   <PHSelectField
                     items={BloodGroups}
@@ -188,25 +164,37 @@ const RegisterPage = () => {
                   <PHInput label="Age" fullWidth={true} name="age" />
                 </Grid>
                 <Grid item md={6}>
-                  {/* <PHInput
-                    label="Last Donation Date"
-                    fullWidth={true}
-                    name="lastDonationDate"
-                  /> */}
                   <PHDatePicker
                     name="lastDonationDate"
                     label="Last Donation Date"
                   />
                 </Grid>
               </Grid>
+              {error && (
+                <Box>
+                  <Typography
+                    sx={{
+                      backgroundColor: "red",
+                      padding: "1px",
+                      borderRadius: "2px",
+                      color: "white",
+                      marginTop: "5px",
+                    }}
+                  >
+                    {error}
+                  </Typography>
+                </Box>
+              )}
+
               <Button
                 sx={{
                   margin: "10px 0px",
                 }}
                 fullWidth={true}
                 type="submit"
+                disabled={isLoading}
               >
-                Register
+                {isLoading ? <CircularProgress size={24} /> : "Register"}
               </Button>
               <Typography component="p" fontWeight={300}>
                 Do you already have an account? <Link href="/login">Login</Link>

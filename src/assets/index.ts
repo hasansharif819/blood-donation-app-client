@@ -1,19 +1,8 @@
 const assets = {
   images: {
-    // images will go here
-
-    doctors: require("./landing_page/doctors.png"),
-    atm: require("./landing_page/atm-card.png"),
-    videoCall: require("./landing_page/video_call.png"),
-    report: require("./landing_page/diagnostic.png"),
-    budge: require("./landing_page/badge.png"),
-    folder: require("./landing_page/folder.png"),
-    doctor1: require("./images/doctor1.png"),
-    doctor2: require("./images/doctor2.png"),
-    doctor3: require("./images/doctor3.png"),
-    stethoscope: require("./images/Stetoscope.png"),
-    familyOnBeach: require("./images/familyOnBeach.png"),
+    bloodLogo: require("./images/blood-logo1.png")
   },
+  
   svgs: {
     logo: require("./svgs/logo.svg"),
     search: require("./svgs/search.svg"),

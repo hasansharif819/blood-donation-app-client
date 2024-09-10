@@ -1,7 +1,13 @@
-"use client";
-import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
-import Image from "next/image";
-import assets from "@/assets";
+'use client'
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Container,
+  Grid,
+  Stack,
+  Typography,
+} from "@mui/material";
 import Link from "next/link";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { userLogin } from "@/services/actions/userLogin";
@@ -13,7 +19,10 @@ import PHInput from "@/components/Forms/PHInput";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
+import Image from "next/image";
+import assets from "@/assets";
 
+// Validation schema
 // export const validationSchema = z.object({
 //   email: z.string().email("Please enter a valid email address!"),
 //   password: z.string().min(6, "Must be at least 6 characters"),
@@ -21,24 +30,50 @@ import { useState } from "react";
 
 const LoginPage = () => {
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false); 
+  const [navigationLoading, setNavigationLoading] = useState(false);
   const router = useRouter();
 
-  const handleLogin = async (values: FieldValues) => {
-    // console.log(values);
+  const {
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    // resolver: zodResolver(validationSchema),
+    defaultValues: {
+      email: "sharif@gmail.com",
+      password: "123456",
+    },
+  });
+
+  const handleLogin: SubmitHandler<FieldValues> = async (values) => {
+    setLoading(true);
+    setError("");
     try {
-      const res = await userLogin(values);
-      // console.log("Login user = ", res);
+      const res = await userLogin(values)
+      
+      if(!res?.data){
+        setError("Email or Password is incorrect");
+      }
+
       if (res?.data?.token) {
         toast.success(res?.message);
         storeUserInfo({ accessToken: res?.data?.token });
         router.push("/");
       } else {
-        setError(res.message);
-        // console.log(res);
+        setError(res?.message);
       }
     } catch (err: any) {
-      console.error(err.message);
+      setError("Email or Password is incorrect");
+    } finally {
+      setLoading(false);
     }
+  };
+
+  const handleNavigation = async (path: string) => {
+    setNavigationLoading(true);
+    router.push(path);
+    setNavigationLoading(false);
   };
 
   return (
@@ -67,7 +102,7 @@ const LoginPage = () => {
             }}
           >
             <Box>
-              {/* <Image src={assets.svgs.logo} width={50} height={50} alt="logo" /> */}
+              <Image src={assets.images.bloodLogo} width={50} height={50} alt="logo" />
             </Box>
             <Box>
               <Typography variant="h6" fontWeight={600}>
@@ -75,22 +110,6 @@ const LoginPage = () => {
               </Typography>
             </Box>
           </Stack>
-
-          {error && (
-            <Box>
-              <Typography
-                sx={{
-                  backgroundColor: "red",
-                  padding: "1px",
-                  borderRadius: "2px",
-                  color: "white",
-                  marginTop: "5px",
-                }}
-              >
-                {error}
-              </Typography>
-            </Box>
-          )}
 
           <Box>
             <PHForm
@@ -108,6 +127,8 @@ const LoginPage = () => {
                     label="Email"
                     type="email"
                     fullWidth={true}
+                    error={!!errors.email}
+                    helperText={errors.email?.message as string}
                   />
                 </Grid>
                 <Grid item md={6}>
@@ -116,23 +137,49 @@ const LoginPage = () => {
                     label="Password"
                     type="password"
                     fullWidth={true}
+                    error={!!errors.password}
+                    helperText={errors.password?.message as string}
                   />
                 </Grid>
               </Grid>
 
-              <Link href={"/forgot-password"}>
+              <Box
+                sx={{
+                  width: '100%',
+                  textAlign: 'right',
+                }}
+              >
                 <Typography
-                  mb={1}
-                  textAlign="end"
-                  component="p"
-                  fontWeight={300}
+                  component="span"
+                  onClick={() => handleNavigation("/forgot-password")}
                   sx={{
                     textDecoration: "underline",
+                    cursor: "pointer",
+                    color: "blue",
+                    display: "inline-flex",
+                    alignItems: "center",
                   }}
                 >
-                  Forgot Password?
+                  {navigationLoading ? <CircularProgress size={16} /> : "Forgot Password?"}
                 </Typography>
-              </Link>
+              </Box>
+
+
+              {error && (
+                <Box>
+                  <Typography
+                    sx={{
+                      backgroundColor: "red",
+                      padding: "1px",
+                      borderRadius: "2px",
+                      color: "white",
+                      marginTop: "5px",
+                    }}
+                  >
+                    {error}
+                  </Typography>
+                </Box>
+              )}
 
               <Button
                 sx={{
@@ -140,13 +187,28 @@ const LoginPage = () => {
                 }}
                 fullWidth={true}
                 type="submit"
+                disabled={loading}
               >
-                Login
+                {loading ? <CircularProgress size={24} /> : "Login"}
               </Button>
+
               <Typography component="p" fontWeight={300}>
                 Don&apos;t have an account?{" "}
-                <Link href="/register">Create an account</Link>
+                <Typography
+                  component="span"
+                  onClick={() => handleNavigation("/register")}
+                  sx={{
+                    textDecoration: "underline",
+                    cursor: "pointer",
+                    color: "blue",
+                    display: "inline-flex",
+                    alignItems: "center",
+                  }}
+                >
+                  {navigationLoading ? <CircularProgress size={16} /> : "Create an account"}
+                </Typography>
               </Typography>
+
             </PHForm>
           </Box>
         </Box>

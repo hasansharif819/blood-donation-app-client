@@ -1,6 +1,6 @@
 "use client";
-
 import { Box, Container, Grid, Typography } from "@mui/material";
+import CountUp from 'react-countup';
 
 const Stats = () => {
   return (
@@ -31,7 +31,7 @@ const Stats = () => {
                 fontWeight={500}
                 color="white"
               >
-                20000+
+                <CountUp start={1} end={20000} duration={5} separator="," />+
               </Typography>
               <Typography
                 variant="h6"
@@ -49,7 +49,7 @@ const Stats = () => {
                 fontWeight={500}
                 color="white"
               >
-                6+
+                <CountUp start={1} end={6} duration={10} />+
               </Typography>
               <Typography
                 variant="h6"
@@ -67,7 +67,7 @@ const Stats = () => {
                 fontWeight={500}
                 color="white"
               >
-                10K+
+                <CountUp start={1} end={10000} duration={5} separator="," />+
               </Typography>
               <Typography
                 variant="h6"
@@ -85,7 +85,7 @@ const Stats = () => {
                 fontWeight={500}
                 color="white"
               >
-                150+
+                <CountUp start={1} end={150} duration={5} />+
               </Typography>
               <Typography
                 variant="h6"
