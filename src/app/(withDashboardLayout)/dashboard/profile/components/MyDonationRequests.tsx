@@ -71,9 +71,23 @@ const MyDonationRequests = () => {
                   <Typography gutterBottom component="h5">
                     Blood Group: {item?.bloodType}
                   </Typography>
-                  <Typography gutterBottom component="p">
+                  {
+                    item?.requestStatus === 'APPROVED' 
+                    ? 
+                    <Typography style={{border: '1px solid green', color: 'green', borderRadius: '20px', maxWidth: '200px', margin: '0 auto'}} gutterBottom component="p">
+                      Status: {item?.requestStatus}
+                    </Typography> 
+                  :
+                  item?.requestStatus === 'PENDING'
+                  ?
+                  <Typography style={{border: '1px solid goldenrod', color: 'goldenrod', borderRadius: '20px', maxWidth: '200px', margin: '0 auto'}} gutterBottom component="p">
                     Status: {item?.requestStatus}
                   </Typography>
+                  :
+                  <Typography style={{border: '1px solid red', color: 'red', borderRadius: '20px', maxWidth: '200px', margin: '0 auto'}} gutterBottom component="p">
+                    Status: {item?.requestStatus}
+                  </Typography>
+                  }
                   <Typography gutterBottom component="p">
                     Hospital Name: {item?.hospitalName}
                   </Typography>

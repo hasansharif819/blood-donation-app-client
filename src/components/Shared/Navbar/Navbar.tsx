@@ -167,22 +167,23 @@ const Navbar = () => {
           </Stack>
 
           {userInfo?.userId ? (
-            <Stack
-              direction="row"
-              gap={2}
-              sx={{ display: { xs: "none", md: "flex" } }}
-            >
-              <Button component={Link} href="/dashboard/profile">
-                My Profile
-              </Button>
-              <Button
-                color="error"
-                onClick={handleLogOut}
-                sx={{ boxShadow: 0 }}
-              >
-                Logout
-              </Button>
-            </Stack>
+            // <Stack
+            //   direction="row"
+            //   gap={2}
+            //   sx={{ display: { xs: "none", md: "flex" } }}
+            // >
+            //   <Button component={Link} href="/dashboard/profile">
+            //     My Profile
+            //   </Button>
+            //   <Button
+            //     color="error"
+            //     onClick={handleLogOut}
+            //     sx={{ boxShadow: 0 }}
+            //   >
+            //     Logout
+            //   </Button>
+            // </Stack>
+            ""
           ) : (
             <Button
               component={Link}
