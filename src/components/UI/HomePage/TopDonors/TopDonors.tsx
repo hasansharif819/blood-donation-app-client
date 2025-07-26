@@ -4,7 +4,7 @@ import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 const TopDonors = async () => {
   const res = await fetch(
     // `https://blood-donation-server-final-six.vercel.app/api/donor-list`
-    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/donor-list`
+    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/top-donors`
   );
 
   const { data } = await res.json();
@@ -52,7 +52,7 @@ const TopDonors = async () => {
           ))}
         </Grid>
 
-        {data.length === 0 && (
+        {data?.length === 0 && (
           <Box sx={{ textAlign: "center", mt: 3 }}>
             <Typography>No Donors Found With This Name</Typography>
           </Box>
