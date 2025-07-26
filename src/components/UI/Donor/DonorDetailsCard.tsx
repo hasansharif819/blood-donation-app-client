@@ -9,6 +9,9 @@ import {
   Container,
   Stack,
   Typography,
+  Chip,
+  Divider,
+  useTheme,
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,143 +19,247 @@ import React, { useState } from "react";
 import avatar from "@/assets/images/avatar.png";
 import useUserInfo from "@/hooks/useUserInfo";
 import DonorRequestModal from "@/app/(withCommonLayout)/components/DonorRequestsModal";
+import {
+  Bloodtype,
+  LocationOn,
+  CalendarToday,
+  Person,
+  VolunteerActivism,
+  Phone,
+} from "@mui/icons-material";
 
-const DonorDetailsCard = ({ donor }: any) => {
+interface Donor {
+  id: string;
+  name: string;
+  email: string;
+  bloodType: string;
+  totalDonations: number;
+  location: string;
+  city?: string;
+  status?: string;
+  profilePicture?: string;
+  userProfile?: {
+    age?: number;
+    bio?: string;
+    lastDonationDate?: string;
+    contactNumber?: string;
+  };
+}
+
+interface DonorDetailsCardProps {
+  donor: Donor;
+}
+
+const DonorDetailsCard: React.FC<DonorDetailsCardProps> = ({ donor }) => {
   const userInfo = useUserInfo();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const theme = useTheme();
+
+  const getStatusColor = () => {
+    return donor?.status?.toLowerCase() === "active" ? "success" : "error";
+  };
+
+  const renderDetailItem = (
+    icon: React.ReactNode,
+    label: string,
+    value?: string | number
+  ) => (
+    <Stack direction="row" spacing={2} alignItems="center">
+      <Box sx={{ color: theme.palette.text.secondary }}>{icon}</Box>
+      <Typography variant="body1">
+        <Typography component="span" fontWeight={600}>
+          {label}:{" "}
+        </Typography>
+        {value || "Not provided"}
+      </Typography>
+    </Stack>
+  );
 
   return (
     <>
-      {/* Popup */}
       <DonorRequestModal
         open={isModalOpen}
         setOpen={setIsModalOpen}
         id={donor?.id}
       />
 
-      <Container>
-        <Box my={5}>
-          <Typography variant="h4" fontWeight={700} textAlign="center">
-            Donor&apos;s Profile Details
+      <Container maxWidth="lg">
+        <Box my={5} textAlign="center">
+          <Typography variant="h4" fontWeight={700} gutterBottom>
+            Donor Profile
           </Typography>
           <Typography
-            textAlign="center"
-            mt={2}
-            sx={{ width: "70%", margin: "10px auto" }}
-            variant="h6"
+            variant="subtitle1"
+            color="text.secondary"
+            maxWidth="md"
+            mx="auto"
           >
             Your blood donation is a gift of life that only you can give. A few
-            minutes of your time can mean a lifetime for someone else. Feel free
-            to use this quote in your materials or on your website to encourage
-            blood donation. Donate blood and save lives today!
+            minutes of your time can mean a lifetime for someone else.
           </Typography>
         </Box>
 
-        <Box
-          sx={{ display: "flex", justifyContent: "center", marginBottom: 10 }}
-        >
+        <Box sx={{ display: "flex", justifyContent: "center", mb: 10 }}>
           <Card
             sx={{
-              maxWidth: 1000,
+              width: "100%",
+              maxWidth: 900,
               boxShadow: 3,
-              borderRadius: 2,
+              borderRadius: 4,
               overflow: "hidden",
+              background: theme.palette.background.paper,
             }}
           >
-            <CardContent>
+            <CardContent sx={{ p: { xs: 2, md: 4 } }}>
               <Stack
                 direction={{ xs: "column", md: "row" }}
-                gap={5}
+                gap={{ xs: 3, md: 5 }}
                 alignItems="center"
-                justifyContent="center"
-                sx={{ p: 3 }}
               >
-                <Box sx={{ width: 200 }}>
+                <Box
+                  sx={{
+                    width: { xs: 150, md: 200 },
+                    height: { xs: 150, md: 200 },
+                    position: "relative",
+                    borderRadius: "50%",
+                    overflow: "hidden",
+                    border: `4px solid ${theme.palette.primary.main}`,
+                  }}
+                >
                   <Image
-                    src={donor?.profilePicture ? donor?.profilePicture : avatar}
-                    alt="donor image"
-                    width={200}
-                    height={250}
-                    style={{ borderRadius: "50%", objectFit: "cover" }}
+                    src={donor?.profilePicture || avatar}
+                    alt={`${donor?.name}'s profile`}
+                    fill
+                    style={{ objectFit: "cover" }}
+                    priority
                   />
                 </Box>
-                <Stack flex={1} spacing={2}>
-                  <Typography variant="h6" fontWeight={700}>
-                    Name: {donor?.name}
-                  </Typography>
-                  <Typography color="text.secondary">
-                    Email: {donor?.email}
-                  </Typography>
-                  <Typography color="text.secondary">
-                    Blood Group: {donor?.bloodType}
-                  </Typography>
-                  <Typography color="text.secondary">
-                    Total Donates: {donor?.totalDonations} Times.
-                  </Typography>
-                  <Typography color="text.secondary">
-                    Location: {donor?.location}
-                  </Typography>
-                  <Typography color="text.secondary">
-                    City: {donor?.city || "Not Given"}
-                  </Typography>
-                  <Typography color="text.secondary">
-                    Age: {donor?.userProfile?.age}
-                  </Typography>
-                  <Typography color="text.secondary">
-                    Availability: {donor?.status || "Inactive"}
-                  </Typography>
-                  <Typography color="text.secondary">
-                    Last Donation Date: {donor?.userProfile?.lastDonationDate}
-                  </Typography>
-                  <Typography
-                    color="text.secondary"
-                    sx={{ wordBreak: "break-word" }}
+
+                <Stack spacing={2} sx={{ flex: 1 }}>
+                  <Stack
+                    direction="row"
+                    justifyContent="space-between"
+                    alignItems="center"
+                    flexWrap="wrap"
+                    gap={2}
                   >
-                    Bio: {donor?.userProfile?.bio}
-                  </Typography>
+                    <Typography variant="h5" fontWeight={700}>
+                      {donor?.name}
+                    </Typography>
+                    <Chip
+                      label={donor?.status || "Inactive"}
+                      color={getStatusColor()}
+                      size="small"
+                      sx={{ fontWeight: 600 }}
+                    />
+                  </Stack>
+
+                  <Stack spacing={1.5}>
+                    {renderDetailItem(
+                      <Bloodtype />,
+                      "Blood Group",
+                      donor?.bloodType
+                    )}
+                    {renderDetailItem(
+                      <LocationOn />,
+                      "Location",
+                      donor?.location
+                    )}
+                    {renderDetailItem(
+                      <Phone />,
+                      "Contact Number",
+                      donor?.userProfile?.contactNumber
+                    )}
+                    {renderDetailItem(
+                      <Person />,
+                      "Age",
+                      donor?.userProfile?.age
+                    )}
+                    {renderDetailItem(
+                      <CalendarToday />,
+                      "Last Donation",
+                      donor?.userProfile?.lastDonationDate
+                    )}
+                    {renderDetailItem(
+                      <VolunteerActivism />,
+                      "Total Donations",
+                      donor?.totalDonations
+                    )}
+                  </Stack>
+
+                  <Divider sx={{ my: 1 }} />
+
+                  <Box>
+                    <Typography variant="subtitle1" fontWeight={600} mb={1}>
+                      Bio:
+                    </Typography>
+                    <Typography
+                      color="text.secondary"
+                      sx={{
+                        wordBreak: "break-word",
+                        fontStyle: donor?.userProfile?.bio
+                          ? "inherit"
+                          : "italic",
+                      }}
+                    >
+                      {donor?.userProfile?.bio || "No bio provided"}
+                    </Typography>
+                  </Box>
                 </Stack>
               </Stack>
             </CardContent>
-            <CardActions
-              sx={{
-                p: 3,
-                flexDirection: "column",
-                alignItems: "center",
-                maxWidth: 800,
-                mx: "auto",
-              }}
-            >
-              {userInfo?.userId ? (
-                <>
-                  <Button
-                    sx={{ maxWidth: 300, mb: 5 }}
-                    fullWidth
-                    onClick={() => setIsModalOpen(true)}
-                  >
-                    Request for Blood
-                  </Button>
 
-                  <Typography color="error" fontWeight="bold">
-                    You can only request for blood from this donor if your blood
-                    group and the donors blood group match exactly. Otherwise,
-                    you cannot request blood from this donor.
-                  </Typography>
-                </>
-              ) : (
-                <>
+            <CardActions sx={{ p: 3, justifyContent: "center" }}>
+              {userInfo?.userId ? (
+                <Stack spacing={3} width="100%" maxWidth={600}>
                   <Button
                     variant="contained"
-                    color="primary"
+                    size="large"
+                    fullWidth
+                    onClick={() => setIsModalOpen(true)}
+                    sx={{
+                      py: 1.5,
+                      borderRadius: 2,
+                      fontWeight: 600,
+                    }}
+                  >
+                    Request Blood Donation
+                  </Button>
+                  <Typography
+                    variant="body2"
+                    color="error"
+                    textAlign="center"
+                    fontWeight={500}
+                  >
+                    Note: You can only request blood if your blood group matches
+                    the donors blood group.
+                  </Typography>
+                </Stack>
+              ) : (
+                <Stack spacing={3} width="100%" maxWidth={400}>
+                  <Button
+                    variant="contained"
+                    size="large"
+                    fullWidth
                     component={Link}
                     href="/login"
-                    sx={{ mb: 2 }}
+                    sx={{
+                      py: 1.5,
+                      borderRadius: 2,
+                      fontWeight: 600,
+                    }}
                   >
-                    Login
+                    Login to Request Blood
                   </Button>
-                  <Typography color="error" fontWeight="bold">
-                    You need to login before you request blood.
+                  <Typography
+                    variant="body2"
+                    color="error"
+                    textAlign="center"
+                    fontWeight={500}
+                  >
+                    You need to login before you can request blood.
                   </Typography>
-                </>
+                </Stack>
               )}
             </CardActions>
           </Card>

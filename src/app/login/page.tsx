@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import {
   Box,
   Button,
@@ -30,7 +30,7 @@ import assets from "@/assets";
 
 const LoginPage = () => {
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
   const [navigationLoading, setNavigationLoading] = useState(false);
   const router = useRouter();
 
@@ -40,19 +40,19 @@ const LoginPage = () => {
     reset,
   } = useForm({
     // resolver: zodResolver(validationSchema),
-    defaultValues: {
-      email: "sharif@gmail.com",
-      password: "123456",
-    },
+    // defaultValues: {
+    //   email: "sharif@gmail.com",
+    //   password: "123456",
+    // },
   });
 
   const handleLogin: SubmitHandler<FieldValues> = async (values) => {
     setLoading(true);
     setError("");
     try {
-      const res = await userLogin(values)
-      
-      if(!res?.data){
+      const res = await userLogin(values);
+
+      if (!res?.data) {
         setError("Email or Password is incorrect");
       }
 
@@ -102,7 +102,12 @@ const LoginPage = () => {
             }}
           >
             <Box>
-              <Image src={assets.images.bloodLogo} width={50} height={50} alt="logo" />
+              <Image
+                src={assets.images.bloodLogo}
+                width={50}
+                height={50}
+                alt="logo"
+              />
             </Box>
             <Box>
               <Typography variant="h6" fontWeight={600}>
@@ -112,14 +117,7 @@ const LoginPage = () => {
           </Stack>
 
           <Box>
-            <PHForm
-              onSubmit={handleLogin}
-              // resolver={zodResolver(validationSchema)}
-              defaultValues={{
-                email: "sharif@gmail.com",
-                password: "123456",
-              }}
-            >
+            <PHForm onSubmit={handleLogin}>
               <Grid container spacing={2} my={1}>
                 <Grid item md={6}>
                   <PHInput
@@ -145,8 +143,8 @@ const LoginPage = () => {
 
               <Box
                 sx={{
-                  width: '100%',
-                  textAlign: 'right',
+                  width: "100%",
+                  textAlign: "right",
                 }}
               >
                 <Typography
@@ -160,10 +158,13 @@ const LoginPage = () => {
                     alignItems: "center",
                   }}
                 >
-                  {navigationLoading ? <CircularProgress size={16} /> : "Forgot Password?"}
+                  {navigationLoading ? (
+                    <CircularProgress size={16} />
+                  ) : (
+                    "Forgot Password?"
+                  )}
                 </Typography>
               </Box>
-
 
               {error && (
                 <Box>
@@ -205,10 +206,13 @@ const LoginPage = () => {
                     alignItems: "center",
                   }}
                 >
-                  {navigationLoading ? <CircularProgress size={16} /> : "Create an account"}
+                  {navigationLoading ? (
+                    <CircularProgress size={16} />
+                  ) : (
+                    "Create an account"
+                  )}
                 </Typography>
               </Typography>
-
             </PHForm>
           </Box>
         </Box>

@@ -1,5 +1,3 @@
-// import DonorDetailsCard from "@/components/UI/Donor/DonorDetailsCard";
-
 import DonorDetailsCard from "@/components/UI/Donor/DonorDetailsCard";
 
 type PropTypes = {
@@ -10,8 +8,7 @@ type PropTypes = {
 
 const DonorsProfilePage = async ({ params }: PropTypes) => {
   const res = await fetch(
-    // `https://blood-donation-server-final-six.vercel.app/api/donor-list/${params.id}`
-    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/donor-list/${params.id}`
+    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users/${params.id}`
   );
   const { data: donor } = await res.json();
 
