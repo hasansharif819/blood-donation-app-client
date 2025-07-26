@@ -327,7 +327,7 @@ const Donors = () => {
   useEffect(() => {
     const fetchDonors = async () => {
       setIsLoading(true);
-      let url = `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/donor-list`;
+      let url = `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users`;
 
       if (bloodType) {
         url += `?bloodType=${bloodType}`;

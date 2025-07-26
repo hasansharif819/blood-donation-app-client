@@ -25,7 +25,7 @@ const FilterDonors = () => {
         setLoading(true);
         try {
           res = await fetch(
-            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/donor-list?bloodType=${bloodType}`
+            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users?bloodType=${bloodType}`
           );
           const data = await res.json();
           setDonors(data);
@@ -36,9 +36,7 @@ const FilterDonors = () => {
         }
       } else {
         try {
-          res = await fetch(
-            `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/donor-list`
-          );
+          res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/users`);
           const data = await res.json();
           setDonors(data);
         } catch (error) {

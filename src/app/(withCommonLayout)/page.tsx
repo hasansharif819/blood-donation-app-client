@@ -4,11 +4,13 @@ import TopDonors from "@/components/UI/HomePage/TopDonors/TopDonors";
 import SuccessStories from "@/components/UI/HomePage/SuccessHistory/SuccessHistory";
 import FilteringDonors from "@/components/UI/HomePage/FilteringDonors/FilteringDonors";
 import DonationTips from "@/components/UI/HomePage/DonationTips/DonationTips";
+import DonationPosts from "@/components/UI/HomePage/Posts/Posts";
 
 const HomePage = () => {
   return (
     <>
       <HeroSection />
+      <DonationPosts />
       <FilteringDonors />
       <TopDonors />
       <SuccessStories />

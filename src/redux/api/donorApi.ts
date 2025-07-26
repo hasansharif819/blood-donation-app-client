@@ -17,7 +17,7 @@ export const donorApi = baseApi.injectEndpoints({
 
     getAllDonors: build.query({
       query: (arg: Record<string, any>) => ({
-        url: "/donor-list",
+        url: "/users",
         method: "GET",
         params: arg,
       }),
@@ -40,7 +40,7 @@ export const donorApi = baseApi.injectEndpoints({
     //get single donor
     getDonor: build.query({
       query: (id: string | string[] | undefined) => ({
-        url: `/donor-list/${id}`,
+        url: `/users/${id}`,
         method: "GET",
       }),
       providesTags: [tagTypes.user],
