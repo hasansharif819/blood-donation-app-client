@@ -1,48 +1,145 @@
-// import { Doctor } from "@/types/doctor";
 import {
+  Avatar,
   Box,
   Button,
   Card,
   CardActions,
   CardContent,
-  CardMedia,
+  Chip,
   Stack,
   Typography,
 } from "@mui/material";
 import Link from "next/link";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import BloodtypeIcon from "@mui/icons-material/Bloodtype";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 const DonorCard = ({ donor }: any) => {
-  // console.log("donor = ", donor);
-  const avatar = "https://i.ibb.co/Xy3r8MX/avatar.png";
+  const profileExists = !!donor?.profilePicture;
+  const initials = donor?.name
+    ? donor.name
+        .split(" ")
+        .map((n: string) => n[0])
+        .join("")
+        .slice(0, 2)
+        .toUpperCase()
+    : "NA";
 
   return (
-    <Card sx={{ maxWidth: 345, maxHeight: 580 }}>
-      <CardMedia
-        component="img"
-        alt="Donor Image"
-        height="140"
-        image={donor?.profilePicture ? donor.profilePicture : avatar}
-        style={{ objectFit: "cover", height: 300 }}
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="p">
-          Name: {donor?.name}
+    <Card
+      sx={{
+        maxWidth: 350,
+        pt: 8,
+        px: 2,
+        position: "relative",
+        textAlign: "center",
+        overflow: "visible",
+        boxShadow: 4,
+        borderRadius: 4,
+        marginTop: 6,
+        "&:hover": {
+          boxShadow: 8,
+          transform: "scale(1.02)",
+        },
+      }}
+    >
+      {/* Avatar with image or initials */}
+      <Box
+        sx={{
+          position: "absolute",
+          top: -50,
+          left: "50%",
+          transform: "translateX(-50%)",
+          border: "4px solid white",
+          borderRadius: "50%",
+          width: 100,
+          height: 100,
+          zIndex: 10,
+          backgroundColor: "#f5f5f5",
+        }}
+      >
+        {profileExists ? (
+          <Avatar
+            alt="Donor"
+            src={donor.profilePicture}
+            sx={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}
+            imgProps={{
+              loading: "lazy",
+            }}
+          />
+        ) : (
+          <Avatar
+            sx={{
+              width: "100%",
+              height: "100%",
+              bgcolor: "primary.main",
+              fontSize: 28,
+            }}
+          >
+            {initials}
+          </Avatar>
+        )}
+      </Box>
+
+      <CardContent sx={{ textAlign: "center", px: 3, pt: 0 }}>
+        <Typography variant="h6" fontWeight="bold" gutterBottom>
+          {donor?.name}
         </Typography>
-        <Typography gutterBottom component="p">
-          Email: {donor?.email}
-        </Typography>
-        <Typography gutterBottom component="p">
-          Blood Group: {donor?.bloodType}
-        </Typography>
-        <Typography gutterBottom component="p">
-          Location: {donor?.location}
-        </Typography>
-        <Typography gutterBottom component="p">
-          Availability: {donor?.status}
+
+        <Stack
+          direction="row"
+          alignItems="center"
+          spacing={1}
+          justifyContent="center"
+          mt={1}
+        >
+          <LocationOnIcon fontSize="small" color="action" />
+          <Typography variant="body2" noWrap>
+            {donor?.location}
+          </Typography>
+        </Stack>
+
+        <Stack
+          direction="row"
+          justifyContent="center"
+          spacing={1}
+          mt={2}
+          flexWrap="wrap"
+        >
+          <Chip
+            icon={<BloodtypeIcon />}
+            label={`Blood: ${donor?.bloodType}`}
+            color="error"
+            variant="outlined"
+          />
+          <Chip
+            icon={<CheckCircleIcon />}
+            label={donor?.status}
+            color={donor?.status === "ACTIVE" ? "success" : "default"}
+            variant="outlined"
+          />
+        </Stack>
+
+        <Typography variant="body2" mt={2}>
+          Total Donations:{" "}
+          <Typography component="span" fontWeight="bold">
+            {donor?.totalDonations || 0} Times
+          </Typography>
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small" component={Link} href={`/donors/${donor.id}`}>
+
+      <CardActions sx={{ justifyContent: "center", pb: 3 }}>
+        <Button
+          size="small"
+          component={Link}
+          href={`/donors/${donor?.id}`}
+          variant="contained"
+          color="primary"
+        >
           Details
         </Button>
       </CardActions>
